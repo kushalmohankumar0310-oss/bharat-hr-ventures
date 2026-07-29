@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bharat HR Ventures | Safe • Secure • Service</title>
+    <meta name="description" content="Bharat HR Ventures provides comprehensive HR solutions, ESI, PF, statutory compliance, recruitment, training, and advisory services. Based in Bengaluru.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo-container">
+                <img src="assets/logo.png" alt="Bharat HR Ventures Logo" class="nav-logo">
+                <span class="logo-text">BHARAT <span class="accent-text">HR</span></span>
+            </a>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="nav-links">
+                <a href="#home" class="nav-item active">Home</a>
+                <a href="#about" class="nav-item">About Us</a>
+                <a href="#bharat-process" class="nav-item">BHARAT Process</a>
+                <a href="#services" class="nav-item">Services</a>
+                <a href="#why-us" class="nav-item">Why Us</a>
+                <a href="#how-it-works" class="nav-item">How We Work</a>
+                <a href="#contact" class="btn-cta header-cta">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="badge">Safe • Secure • Service</div>
+                <h1>BHARAT H R VENTURES</h1>
+                <p class="hero-subtitle">Providing reliable ESI, PF, Employee Insurance, and comprehensive Human Resource solutions for businesses to grow risk-free.</p>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn-cta">Partner With Us</a>
+                    <a href="#services" class="btn-secondary">Explore Services</a>
+                </div>
+            </div>
+            <div class="hero-graphic">
+                <div class="glass-card hero-card">
+                    <div class="hero-card-icon">
+                        <i class="fa-solid fa-earth-americas"></i>
+                    </div>
+                    <h3>Global Talent, Local Compliance</h3>
+                    <p>Managing recruitment, administration, advisory, and statutory regulations under one roof.</p>
+                    <div class="compliance-row">
+                        <span class="compliance-badge"><i class="fa-solid fa-shield-halved"></i> ESI Compliant</span>
+                        <span class="compliance-badge"><i class="fa-solid fa-piggy-bank"></i> PF Managed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>A Word About Us</h2>
+                <p class="section-subtitle">We care for your business.</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-text-content">
+                    <p>We are a team of experienced professionals dedicated to providing reliable ESI, PF, and insurance solutions for businesses. Our mission is to ensure that both employers and employees are safe, secure, and fully compliant with statutory requirements.</p>
+                    <p>With our expertise, we simplify ESI and PF management, assist with employee insurance coverage, and provide timely support during medical emergencies and claim processes. We work closely with organizations to reduce compliance risks while ensuring employees and their families receive the benefits they deserve.</p>
+                    <p class="highlight-quote">Our commitment is to deliver trustworthy, efficient, and personalized services that give employers peace of mind and employees a sense of security.</p>
+                </div>
+                <div class="about-stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-certificate"></i></div>
+                        <h3>100%</h3>
+                        <p>Statutory Compliance</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-user-tie"></i></div>
+                        <h3>Expert</h3>
+                        <p>HR & Legal Advisory Team</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-circle-check"></i></div>
+                        <h3>Reliable</h3>
+                        <p>Claims & Support Assistance</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-briefcase"></i></div>
+                        <h3>End-to-End</h3>
+                        <p>HR Management</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BHARAT Process Section (Interactive Tabs) -->
+    <section id="bharat-process" class="bharat-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>All About H R Services</h2>
+                <p class="section-subtitle">Under One Roof</p>
+            </div>
+            
+            <div class="bharat-interactive-container">
+                <!-- Vertical Alphabet Sidebar -->
+                <div class="bharat-alphabet-sidebar" id="bharat-sidebar">
+                    <button class="alphabet-btn active" data-target="b-content">B</button>
+                    <button class="alphabet-btn" data-target="h-content">H</button>
+                    <button class="alphabet-btn" data-target="a1-content">A</button>
+                    <button class="alphabet-btn" data-target="r-content">R</button>
+                    <button class="alphabet-btn" data-target="a2-content">A</button>
+                    <button class="alphabet-btn" data-target="t-content">T</button>
+                </div>
+
+                <!-- Display Cards -->
+                <div class="bharat-content-display" id="bharat-display">
+                    <!-- B Card -->
+                    <div class="bharat-card active" id="b-content">
+                        <span class="alphabet-watermark">B</span>
+                        <div class="bharat-card-header">
+                            <h3>BHARAT (INDIA)</h3>
+                        </div>
+                        <div class="bharat-card-body">
+                            <p class="hindi-text">भारत (India) is home to one of the world's largest, youngest, and most energetic workforces.</p>
+                            <p>We are committed to providing skilled human resources and comprehensive HR-related services to organizations, helping businesses recruit, manage, and develop talented employees to achieve their goals efficiently.</p>
+                        </div>
+                    </div>
+                    <!-- H Card -->
+                    <div class="bharat-card" id="h-content">
+                        <span class="alphabet-watermark">H</span>
+                        <div class="bharat-card-header">
+                            <h3>Human Resource</h3>
+                        </div>
+                        <div class="bharat-card-body">
+                            <ul class="process-list">
+                                <li><i class="fa-solid fa-circle-chevron-right"></i> <strong>Sourcing:</strong> Finding candidates across multiple channels.</li>
+                                <li><i class="fa-solid fa-circle-chevron-right"></i> <strong>Screening:</strong> Reviewing resumes and qualifications.</li>
+                                <li><i class="fa-solid fa-circle-chevron-right"></i> <strong>Interviewing:</strong> Rigorous evaluation processes.</li>
+                                <li><i class="fa-solid fa-circle-chevron-right"></i> <strong>Client Acquisition:</strong> Partnering with top companies.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- A1 Card -->
+                    <div class="bharat-card" id="a1-content">
+                        <span class="alphabet-watermark">A</span>
+                        <div class="bharat-card-header">
+                            <h3>Administration</h3>
+                        </div>
+                        <div class="bharat-card-body">
+                            <ul class="process-list grid-list">
+                                <li><i class="fa-solid fa-circle-chevron-right"></i> Compliance & documentation</li>
+                                <li><i class="fa-solid fa-circle-chevron-right"></i> Background verification</li>
+                                <li><i class="fa-solid fa-circle-chevron-right"></i> Legal documentation</li>
+                                <li><i class="fa-solid fa-circle-chevron-right"></i> Police clearance certificate</li>
+                                <li><i class="fa-solid fa-circle-chevron-right"></i> Health clearance certificate</li>
+                                <li><i class="fa-solid fa-circle-chevron-right"></i> Vaccination checks</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- R Card -->
+                    <div class="bharat-card" id="r-content">
+                        <span class="alphabet-watermark">R</span>
+                        <div class="bharat-card-header">
+                            <h3>Recruitment</h3>
+                        </div>
+                        <div class="bharat-card-body">
+                            <ul class="process-list">
+                                <li><i class="fa-solid fa-circle-chevron-right"></i> HR & Technical interviews</li>
+                                <li><i class="fa-solid fa-circle-chevron-right"></i> Managerial assessments</li>
+                                <li><i class="fa-solid fa-circle-chevron-right"></i> Final Leadership & Director interviews</li>
+                                <li><i class="fa-solid fa-circle-chevron-right"></i> End-to-end Passport & Visa process</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- A2 Card -->
+                    <div class="bharat-card" id="a2-content">
+                        <span class="alphabet-watermark">A</span>
+                        <div class="bharat-card-header">
+                            <h3>Advisory</h3>
+                        </div>
+                        <div class="bharat-card-body">
+                            <ul class="process-list">
+                                <li><i class="fa-solid fa-circle-chevron-right"></i> <strong>Legal Advisor:</strong> Access to expert legal counsel for labor laws.</li>
+                                <li><i class="fa-solid fa-circle-chevron-right"></i> <strong>Legal Documentation:</strong> Safeguarding business against liability with strong contract frameworks.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- T Card -->
+                    <div class="bharat-card" id="t-content">
+                        <span class="alphabet-watermark">T</span>
+                        <div class="bharat-card-header">
+                            <h3>Training</h3>
+                        </div>
+                        <div class="bharat-card-body">
+                            <p>We train candidates to match specific industry standards and requirements. Our training programs are tailored to help workforces adapt quickly to modern enterprise environments, making them highly productive from day one.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Our Core Services</h2>
+                <p class="section-subtitle">Comprehensive solutions for workforce protection & statutory compliance</p>
+            </div>
+            
+            <div class="services-detailed-grid">
+                <!-- ESI Card -->
+                <div class="service-box glass-card">
+                    <div class="service-box-header">
+                        <div class="box-icon"><i class="fa-solid fa-shield-heart"></i></div>
+                        <h3>ESI (Employees' State Insurance)</h3>
+                    </div>
+                    <p>In India, ESI is a self-financing social security and health insurance scheme for workers. Managed by the Employees' State Insurance Corporation (ESIC), it safeguards employees earning up to ₹21,000 per month against financial hardships caused by sickness, maternity, or employment-related injuries.</p>
+                    <ul class="box-list">
+                        <li><i class="fa-solid fa-check"></i> ESI Registration & Compliance</li>
+                        <li><i class="fa-solid fa-check"></i> Cashless Medical Benefits support</li>
+                        <li><i class="fa-solid fa-check"></i> Claims processing & coordination</li>
+                    </ul>
+                </div>
+
+                <!-- PF Card -->
+                <div class="service-box glass-card">
+                    <div class="service-box-header">
+                        <div class="box-icon"><i class="fa-solid fa-vault"></i></div>
+                        <h3>PF (Provident Fund)</h3>
+                    </div>
+                    <p>PF stands for Provident Fund. Managed by the EPFO (Employees' Provident Fund Organisation), it is a government-managed retirement savings scheme where a portion of an employee's salary is set aside each month to provide financial security after retirement.</p>
+                    <ul class="box-list">
+                        <li><i class="fa-solid fa-check"></i> EPF Registration & setup</li>
+                        <li><i class="fa-solid fa-check"></i> Monthly returns and filing</li>
+                        <li><i class="fa-solid fa-check"></i> Withdrawal & transfer support</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Government Schemes Sub-section -->
+            <div class="gov-schemes-header text-center">
+                <h3>Government-Backed Health & Life Insurance Schemes</h3>
+                <p>We facilitate integration and management of key government insurance programs:</p>
+            </div>
+
+            <div class="gov-schemes-grid">
+                <div class="scheme-card">
+                    <div class="scheme-icon"><i class="fa-solid fa-house-medical"></i></div>
+                    <h4>AB-PMJAY</h4>
+                    <h5>Ayushman Bharat</h5>
+                    <p>Flagship health insurance scheme providing ₹5 lakh of cashless coverage per family per year for secondary & tertiary hospitalization.</p>
+                </div>
+                <div class="scheme-card">
+                    <div class="scheme-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                    <h4>PMJJBY</h4>
+                    <h5>Pradhan Mantri Jeevan Jyoti Bima</h5>
+                    <p>Government-backed one-year term life insurance scheme providing ₹2 lakh death cover due to any cause at ₹436 annual premium.</p>
+                </div>
+                <div class="scheme-card">
+                    <div class="scheme-icon"><i class="fa-solid fa-user-shield"></i></div>
+                    <h4>PMSBY</h4>
+                    <h5>Pradhan Mantri Suraksha Bima</h5>
+                    <p>Government-backed accident insurance scheme providing ₹2 lakh for accidental death/full disability and ₹1 lakh for partial disability at ₹20/year.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us Section -->
+    <section id="why-us" class="why-us-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Why Us?</h2>
+                <p class="section-subtitle">Protect Your Employees. Protect Your Business.</p>
+                <p class="why-us-intro">Every employee is the backbone of your organization. Ensuring their health, safety, and financial security is not just a legal responsibility—it's a smart business decision. We provide complete support for ESI, EPF, and Employee Insurance solutions to help organizations comply with statutory requirements while offering enhanced protection.</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fa-solid fa-file-circle-check"></i></div>
+                    <h4>ESI Registration & Compliance</h4>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fa-solid fa-user-gear"></i></div>
+                    <h4>Dedicated HR Expertise Team</h4>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fa-solid fa-hospital"></i></div>
+                    <h4>Group Medical & Life Insurance</h4>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fa-solid fa-hand-holding-hand"></i></div>
+                    <h4>Employee Claims Assistance</h4>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fa-solid fa-folder-open"></i></div>
+                    <h4>End-to-End Documentation</h4>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fa-solid fa-chart-line-down"></i></div>
+                    <h4>Reduced Financial Risk</h4>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fa-solid fa-business-time"></i></div>
+                    <h4>Hassle-Free Administration</h4>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fa-solid fa-users-line"></i></div>
+                    <h4>Improved Employee Retention</h4>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <h4>Protection Against Liabilities</h4>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fa-solid fa-credit-card"></i></div>
+                    <h4>Cashless Medical Benefits</h4>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fa-solid fa-shield-virus"></i></div>
+                    <h4>Financial Security in Illness</h4>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fa-solid fa-people-roof"></i></div>
+                    <h4>Family & Dependent Coverage</h4>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fa-solid fa-headset"></i></div>
+                    <h4>Dedicated Claims Support</h4>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fa-solid fa-hands-holding-child"></i></div>
+                    <h4>Workforce Protection Partner</h4>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                    <h4>EPF Registration & Filing</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How We Work Section -->
+    <section id="how-it-works" class="how-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>How does HR Services work?</h2>
+                <p class="section-subtitle">A simple, transparent 7-step process</p>
+            </div>
+            
+            <div class="timeline-container">
+                <div class="timeline-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Understand Your Needs</h4>
+                        <span class="step-tagline">It all begins here</span>
+                        <p>We meet you to understand your business, challenges, and specific HR requirements.</p>
+                    </div>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Analyse & Plan</h4>
+                        <span class="step-tagline">We Get to Know Your Business</span>
+                        <p>We analyse your current HR processes and create a customised plan to meet your goals and ensure compliance.</p>
+                    </div>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Implement Solutions</h4>
+                        <span class="step-tagline">We Take Action</span>
+                        <p>We implement the HR services – recruitment, payroll, compliance, policies, and systems – as per the plan.</p>
+                    </div>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Manage & Support</h4>
+                        <span class="step-tagline">We Handle the Day-to-Day</span>
+                        <p>We manage HR operations smoothly – payroll, attendance, statutory compliance, employee queries, and more.</p>
+                    </div>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Monitor & Improve</h4>
+                        <span class="step-tagline">We Keep Getting Better</span>
+                        <p>We continuously monitor processes, ensure accuracy, and suggest improvements for better efficiency and satisfaction.</p>
+                    </div>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h4>Ensure Compliance</h4>
+                        <span class="step-tagline">We Keep You Compliant</span>
+                        <p>We stay updated with labour laws and statutory regulations to keep your business 100% compliant and risk-free.</p>
+                    </div>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <h4>You Focus on Growth</h4>
+                        <span class="step-tagline">We've Got Your HR Covered</span>
+                        <p>With HR taken care of, you can focus on growing your business. We're your trusted HR partner, always.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-footer text-center">
+                <div class="cta-banner">
+                    <h4>Stronger Workforce. Stronger Business.</h4>
+                    <p>That's where our HR services make the difference.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Ready to Secure Your Business?</h2>
+                    <p>Reach out to us to schedule an introductory consultation, audit your current ESI/PF compliance status, or hire talent.</p>
+                    
+                    <div class="info-list">
+                        <div class="info-item">
+                            <div class="info-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                            <div>
+                                <h4>Our Presence</h4>
+                                <p>Bengaluru, India</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon"><i class="fa-solid fa-phone-volume"></i></div>
+                            <div>
+                                <h4>Call Us</h4>
+                                <p><a href="tel:+918069859722">+91 (80) 6985-9722</a></p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+                            <div>
+                                <h4>Email Us</h4>
+                                <p><a href="mailto:info@bharathrventures.com">info@bharathrventures.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-container glass-card">
+                    <h3>Get a Free HR Assessment</h3>
+                    <form id="contactForm" onsubmit="event.preventDefault(); alert('Assessment Request Submitted Successfully! Our team will contact you shortly.');">
+                        <div class="form-group">
+                            <label for="companyName">Company Name *</label>
+                            <input type="text" id="companyName" required placeholder="Your Company Ltd.">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contactName">Your Name *</label>
+                                <input type="text" id="contactName" required placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactPhone">Phone Number *</label>
+                                <input type="tel" id="contactPhone" required placeholder="+91 XXXXX XXXXX">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Email Address *</label>
+                            <input type="email" id="contactEmail" required placeholder="john@company.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="serviceType">Service Needed</label>
+                            <select id="serviceType">
+                                <option value="full">End-to-End HR Services</option>
+                                <option value="compliance">ESI & PF Compliance Setup</option>
+                                <option value="recruitment">Recruitment & Staffing</option>
+                                <option value="advisory">Legal Advisory / Documentation</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Message / Requirements</label>
+                            <textarea id="contactMessage" rows="4" placeholder="Briefly describe your requirements..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-cta btn-block">Submit Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-about">
+                <div class="logo-container">
+                    <img src="assets/logo.png" alt="Bharat HR Ventures Logo" class="footer-logo">
+                    <span class="logo-text">BHARAT <span class="accent-text">HR</span></span>
+                </div>
+                <p>BHARAT H R VENTURES is committed to building elite teams with precision, compliance, and integrity since inception. Your trusted compliance and workforce protection partner.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="#home">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#bharat-process">BHARAT Process</a>
+                <a href="#services">Services & Schemes</a>
+                <a href="#why-us">Why Us</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Legal Presence</h4>
+                <p><strong>Headquarters:</strong> Bengaluru, Karnataka, India</p>
+                <p><strong>Scope:</strong> National Statutory Compliance (ESI, EPF, LWF, and labor laws)</p>
+                <p class="copyright">© 2026 Bharat HR Ventures. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="app.js"></script>
+</body>
+</html>
