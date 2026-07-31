@@ -148,18 +148,29 @@ window.nextHomeStep = (stepNumber) => {
     const currentStepEl = document.querySelector('.home-survey-step.active-step');
     if (!currentStepEl) return;
 
-    // Validate required radio inputs in current step
-    const requiredRadios = currentStepEl.querySelectorAll('input[type="radio"][required]');
     let isValid = true;
-    
-    requiredRadios.forEach(radio => {
-        const name = radio.name;
-        const checked = currentStepEl.querySelector(`input[name="${name}"]:checked`);
-        if (!checked) isValid = false;
-    });
+
+    // Check validation based on which step we are LEAVING (stepNumber is the step we are ENTERING)
+    if (stepNumber === 2) {
+        // Leaving Step 1. Check Q1 (Radio) and Q2 (Checkbox)
+        const q1Checked = currentStepEl.querySelector('input[name="homeQ1Importance"]:checked');
+        const q2Checked = currentStepEl.querySelectorAll('input[name="homeBenefitsOffer"]:checked');
+        if (!q1Checked || q2Checked.length === 0) isValid = false;
+    } else if (stepNumber === 3) {
+        // Leaving Step 2. Check Q3, Q4, Q5 (all Radios)
+        const q3Checked = currentStepEl.querySelector('input[name="homeQ3Reason"]:checked');
+        const q4Checked = currentStepEl.querySelector('input[name="homeQ4Satisfaction"]:checked');
+        const q5Checked = currentStepEl.querySelector('input[name="homeQ5Productivity"]:checked');
+        if (!q3Checked || !q4Checked || !q5Checked) isValid = false;
+    } else if (stepNumber === 4) {
+        // Leaving Step 3. Check Q6 (Checkbox) and Q7 (Radio)
+        const q6Checked = currentStepEl.querySelectorAll('input[name="homeChallenges"]:checked');
+        const q7Checked = currentStepEl.querySelector('input[name="homeQ7Expansion"]:checked');
+        if (q6Checked.length === 0 || !q7Checked) isValid = false;
+    }
 
     if (!isValid) {
-        alert('Please answer the required questions before proceeding.');
+        alert('Please answer all questions on this step before proceeding.');
         return;
     }
 
@@ -176,11 +187,11 @@ window.nextHomeStep = (stepNumber) => {
         targetStepEl.classList.add('active-step');
     }
 
-    // Update progress bar UI
-    const percent = stepNumber === 2 ? 66 : 100;
+    // Update progress bar UI (4-step scale: 25%, 50%, 75%, 100%)
+    const percent = (stepNumber / 4) * 100;
     const progressText = document.getElementById('survey-progress-text');
     const progressBar = document.getElementById('survey-progress-bar');
-    if (progressText) progressText.innerText = `Step ${stepNumber} of 3`;
+    if (progressText) progressText.innerText = `Step ${stepNumber} of 4`;
     if (progressBar) progressBar.style.width = `${percent}%`;
 };
 
@@ -199,10 +210,10 @@ window.prevHomeStep = (stepNumber) => {
     }
 
     // Update progress bar UI
-    const percent = stepNumber === 1 ? 33 : 66;
+    const percent = (stepNumber / 4) * 100;
     const progressText = document.getElementById('survey-progress-text');
     const progressBar = document.getElementById('survey-progress-bar');
-    if (progressText) progressText.innerText = `Step ${stepNumber} of 3`;
+    if (progressText) progressText.innerText = `Step ${stepNumber} of 4`;
     if (progressBar) progressBar.style.width = `${percent}%`;
 };
 
@@ -216,17 +227,21 @@ window.submitHomeSurvey = (event) => {
     const phoneCode = document.getElementById('homeCountryCode').value;
     const phoneNum = document.getElementById('homePhone').value;
 
-    const workforce = document.querySelector('input[name="homeWorkforceSize"]:checked').value;
-    const status = document.querySelector('input[name="homeEsiPfStatus"]:checked').value;
+    // Check answers for personalized feedback
+    const offersNone = document.querySelector('input[name="homeBenefitsOffer"][value="none"]:checked');
+    const hasChallenges = document.querySelector('input[name="homeChallenges"][value="complex-regulations"]:checked') ||
+                          document.querySelector('input[name="homeChallenges"][value="admin-burden"]:checked');
+    const plansExpand = document.querySelector('input[name="homeQ7Expansion"][value="yes-definitely"]:checked');
 
-    // Build risk estimate feedback message
     let riskMessage = "";
-    if (workforce === "20-or-more" && status === "neither") {
-        riskMessage = "CRITICAL LEGAL RISK: Establishments with 20 or more employees are legally mandated to register for EPF under Indian labor laws. Operating without ESI/PF registers can invite penal interest and damages. Bharat HR Ventures will contact you immediately to file your registration and protect your enterprise.";
-    } else if (workforce === "10-19" && (status === "neither" || status === "pf-only")) {
-        riskMessage = "MODERATE RISK: Establishments with 10 or more employees are required to comply with ESI laws. You are vulnerable to compliance audits. We recommend implementing ESI coverage immediately.";
+    if (offersNone) {
+        riskMessage = "IMMEDIATE ADVISORY RECOMMENDED: Operating without ESI, EPF, or group insurance benefits exposes your business to audits and penalties under labor policies once statutory employee thresholds are met. Bharat HR Ventures will contact you immediately to map out a secure compliance setup.";
+    } else if (hasChallenges) {
+        riskMessage = "OPTIMIZATION PROFILE: Navigating complex regulations and high administrative burdens is a common roadblock. We specialize in complete statutory takeover (filing, returns, and dispute resolution), reducing your operational overhead by up to 90%.";
+    } else if (plansExpand) {
+        riskMessage = "EXPANSION AUDIT ESTIMATE: Since you plan to expand benefits in the next year, we will help you deploy ESI/EPF structures, coordinate cashless group insurance products, and ensure all filings are aligned with statutory requirements.";
     } else {
-        riskMessage = "COMPLIANT STATUS: Your baseline registrations appear secure. We will review your payroll and monthly filing processes to identify opportunities to optimize employee insurance claims and reduce overheads.";
+        riskMessage = "COMPLIANCE SCORE: Your baseline registrations appear active. We will connect with you to review your monthly returns and audit your files for operational and statutory efficiency.";
     }
 
     // Show feedback and toggle screens

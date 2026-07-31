@@ -493,52 +493,68 @@
                     <div class="survey-progress-container" style="margin-bottom: 20px; padding: 12px 16px;">
                         <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-weight: 600; font-size: 0.85rem; color: var(--color-text-dark);">
                             <span>Survey Progress</span>
-                            <span id="survey-progress-text">Step 1 of 3</span>
+                            <span id="survey-progress-text">Step 1 of 4</span>
                         </div>
                         <div style="width: 100%; height: 6px; background: #e2e8f0; border-radius: 4px; overflow: hidden;">
-                            <div id="survey-progress-bar" style="width: 33%; height: 100%; background: var(--color-accent); transition: width 0.3s ease;"></div>
+                            <div id="survey-progress-bar" style="width: 25%; height: 100%; background: var(--color-accent); transition: width 0.3s ease;"></div>
                         </div>
                     </div>
 
                     <form id="homeSurveyForm" onsubmit="submitHomeSurvey(event);">
-                        <!-- STEP 1: COMPLIANCE Q1 & Q2 -->
+                        <!-- STEP 1: Q1 & Q2 -->
                         <div class="home-survey-step active-step" id="home-step-1">
                             <div class="form-group">
-                                <label style="font-size: 0.95rem; margin-bottom: 8px; font-weight: 600; display: block;">1. What is your current total employee strength? *</label>
+                                <label style="font-size: 0.95rem; margin-bottom: 8px; font-weight: 600; display: block;">1. How important do you consider employee social security programs like ESI and EPF for your organization? *</label>
                                 <div class="survey-radio-group">
                                     <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
-                                        <input type="radio" name="homeWorkforceSize" value="less-than-10" required>
-                                        <span>Less than 10 employees</span>
+                                        <input type="radio" name="homeQ1Importance" value="very-important" required>
+                                        <span>Very important</span>
                                     </label>
                                     <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
-                                        <input type="radio" name="homeWorkforceSize" value="10-19">
-                                        <span>10 to 19 employees</span>
+                                        <input type="radio" name="homeQ1Importance" value="somewhat-important">
+                                        <span>Somewhat important</span>
                                     </label>
                                     <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
-                                        <input type="radio" name="homeWorkforceSize" value="20-or-more">
-                                        <span>20 or more employees</span>
+                                        <input type="radio" name="homeQ1Importance" value="neutral">
+                                        <span>Neutral</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeQ1Importance" value="not-very-important">
+                                        <span>Not very important</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeQ1Importance" value="not-important-at-all">
+                                        <span>Not important at all</span>
                                     </label>
                                 </div>
                             </div>
 
                             <div class="form-group" style="margin-top: 18px;">
-                                <label style="font-size: 0.95rem; margin-bottom: 8px; font-weight: 600; display: block;">2. ESI & PF registration status? *</label>
+                                <label style="font-size: 0.95rem; margin-bottom: 8px; font-weight: 600; display: block;">2. Which of the following employee benefits does your organization currently offer? (Select all that apply) *</label>
                                 <div class="survey-radio-group">
                                     <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
-                                        <input type="radio" name="homeEsiPfStatus" value="both" required>
-                                        <span>Fully registered for ESI & PF</span>
+                                        <input type="checkbox" name="homeBenefitsOffer" value="esi">
+                                        <span>Employee State Insurance (ESI)</span>
                                     </label>
                                     <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
-                                        <input type="radio" name="homeEsiPfStatus" value="pf-only">
-                                        <span>PF only</span>
+                                        <input type="checkbox" name="homeBenefitsOffer" value="epf">
+                                        <span>Employees' Provident Fund (EPF)</span>
                                     </label>
                                     <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
-                                        <input type="radio" name="homeEsiPfStatus" value="esi-only">
-                                        <span>ESI only</span>
+                                        <input type="checkbox" name="homeBenefitsOffer" value="health">
+                                        <span>Health Insurance</span>
                                     </label>
                                     <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
-                                        <input type="radio" name="homeEsiPfStatus" value="neither">
-                                        <span>Not registered / Not sure</span>
+                                        <input type="checkbox" name="homeBenefitsOffer" value="life">
+                                        <span>Life Insurance</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="checkbox" name="homeBenefitsOffer" value="disability">
+                                        <span>Disability Insurance</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="checkbox" name="homeBenefitsOffer" value="none">
+                                        <span>None of the above</span>
                                     </label>
                                 </div>
                             </div>
@@ -548,40 +564,86 @@
                             </div>
                         </div>
 
-                        <!-- STEP 2: COMPLIANCE Q3 & Q4 -->
+                        <!-- STEP 2: Q3, Q4 & Q5 -->
                         <div class="home-survey-step" id="home-step-2" style="display: none;">
                             <div class="form-group">
-                                <label style="font-size: 0.95rem; margin-bottom: 8px; font-weight: 600; display: block;">3. How do you manage payroll & documentation? *</label>
+                                <label style="font-size: 0.95rem; margin-bottom: 8px; font-weight: 600; display: block;">3. What is the primary reason for offering or not offering social security benefits like ESI and EPF? *</label>
                                 <div class="survey-radio-group">
                                     <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
-                                        <input type="radio" name="homePayrollProcess" value="external" required>
-                                        <span>External compliance agency</span>
+                                        <input type="radio" name="homeQ3Reason" value="legal-requirement" required>
+                                        <span>Legal requirement</span>
                                     </label>
                                     <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
-                                        <input type="radio" name="homePayrollProcess" value="in-house-manual">
-                                        <span>Spreadsheets / In-house manual</span>
+                                        <input type="radio" name="homeQ3Reason" value="employee-retention">
+                                        <span>Employee retention</span>
                                     </label>
                                     <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
-                                        <input type="radio" name="homePayrollProcess" value="hr-software">
-                                        <span>HR payroll software</span>
+                                        <input type="radio" name="homeQ3Reason" value="attracting-talent">
+                                        <span>Attracting talent</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeQ3Reason" value="financial-constraints">
+                                        <span>Financial constraints</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeQ3Reason" value="lack-awareness">
+                                        <span>Lack of awareness</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeQ3Reason" value="other">
+                                        <span>Other</span>
                                     </label>
                                 </div>
                             </div>
 
                             <div class="form-group" style="margin-top: 18px;">
-                                <label style="font-size: 0.95rem; margin-bottom: 8px; font-weight: 600; display: block;">4. Employee health/insurance cover? *</label>
+                                <label style="font-size: 0.95rem; margin-bottom: 8px; font-weight: 600; display: block;">4. How satisfied are you with the current social security and insurance benefits provided to employees? *</label>
                                 <div class="survey-radio-group">
                                     <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
-                                        <input type="radio" name="homeHealthBenefits" value="group-insurance" required>
-                                        <span>Group medical & life insurance</span>
+                                        <input type="radio" name="homeQ4Satisfaction" value="very-satisfied" required>
+                                        <span>Very satisfied</span>
                                     </label>
                                     <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
-                                        <input type="radio" name="homeHealthBenefits" value="esi-only">
-                                        <span>ESI government scheme only</span>
+                                        <input type="radio" name="homeQ4Satisfaction" value="somewhat-satisfied">
+                                        <span>Somewhat satisfied</span>
                                     </label>
                                     <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
-                                        <input type="radio" name="homeHealthBenefits" value="none">
-                                        <span>No insurance / Want to integrate</span>
+                                        <input type="radio" name="homeQ4Satisfaction" value="neutral">
+                                        <span>Neutral</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeQ4Satisfaction" value="somewhat-dissatisfied">
+                                        <span>Somewhat dissatisfied</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeQ4Satisfaction" value="very-dissatisfied">
+                                        <span>Very dissatisfied</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-top: 18px;">
+                                <label style="font-size: 0.95rem; margin-bottom: 8px; font-weight: 600; display: block;">5. Do you believe that offering comprehensive social security benefits impacts employee productivity? *</label>
+                                <div class="survey-radio-group">
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeQ5Productivity" value="significantly-improves" required>
+                                        <span>Significantly improves productivity</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeQ5Productivity" value="somewhat-improves">
+                                        <span>Somewhat improves productivity</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeQ5Productivity" value="no-impact">
+                                        <span>No impact</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeQ5Productivity" value="somewhat-reduces">
+                                        <span>Somewhat reduces productivity</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeQ5Productivity" value="significantly-reduces">
+                                        <span>Significantly reduces productivity</span>
                                     </label>
                                 </div>
                             </div>
@@ -592,10 +654,74 @@
                             </div>
                         </div>
 
-                        <!-- STEP 3: CONTACT INFO & SUBMIT -->
+                        <!-- STEP 3: Q6 & Q7 -->
                         <div class="home-survey-step" id="home-step-3" style="display: none;">
                             <div class="form-group">
-                                <label for="homeCompanyName">Company Name *</label>
+                                <label style="font-size: 0.95rem; margin-bottom: 8px; font-weight: 600; display: block;">6. What challenges do you face in implementing or maintaining employee social security and insurance programs? (Select all that apply) *</label>
+                                <div class="survey-radio-group">
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="checkbox" name="homeChallenges" value="high-costs">
+                                        <span>High costs</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="checkbox" name="homeChallenges" value="complex-regulations">
+                                        <span>Complex regulations</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="checkbox" name="homeChallenges" value="admin-burden">
+                                        <span>Administrative burden</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="checkbox" name="homeChallenges" value="employee-participation">
+                                        <span>Employee participation</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="checkbox" name="homeChallenges" value="lack-resources">
+                                        <span>Lack of resources</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="checkbox" name="homeChallenges" value="none">
+                                        <span>None</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-top: 18px;">
+                                <label style="font-size: 0.95rem; margin-bottom: 8px; font-weight: 600; display: block;">7. Would you consider expanding your current employee social security and insurance offerings in the next year? *</label>
+                                <div class="survey-radio-group">
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeQ7Expansion" value="yes-definitely" required>
+                                        <span>Yes, definitely</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeQ7Expansion" value="probably">
+                                        <span>Probably</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeQ7Expansion" value="not-sure">
+                                        <span>Not sure</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeQ7Expansion" value="probably-not">
+                                        <span>Probably not</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeQ7Expansion" value="no-definitely-not">
+                                        <span>No, definitely not</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; justify-content: space-between; margin-top: 24px;">
+                                <button type="button" class="btn-secondary" onclick="prevHomeStep(2)" style="padding: 10px 20px; font-size: 0.9rem;"><i class="fa-solid fa-arrow-left"></i> Prev</button>
+                                <button type="button" class="btn-cta" onclick="nextHomeStep(4)" style="padding: 10px 20px; font-size: 0.9rem;">Next Step <i class="fa-solid fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- STEP 4: CONTACT INFO & SUBMIT -->
+                        <div class="home-survey-step" id="home-step-4" style="display: none;">
+                            <div class="form-group">
+                                <label for="homeCompanyName">Business Name *</label>
                                 <input type="text" id="homeCompanyName" required placeholder="Your Company Ltd.">
                             </div>
 
@@ -634,7 +760,7 @@
                             </div>
 
                             <div style="display: flex; justify-content: space-between; margin-top: 24px;">
-                                <button type="button" class="btn-secondary" onclick="prevHomeStep(2)" style="padding: 10px 20px; font-size: 0.9rem;"><i class="fa-solid fa-arrow-left"></i> Prev</button>
+                                <button type="button" class="btn-secondary" onclick="prevHomeStep(3)" style="padding: 10px 20px; font-size: 0.9rem;"><i class="fa-solid fa-arrow-left"></i> Prev</button>
                                 <button type="submit" class="btn-cta" style="padding: 10px 20px; font-size: 0.9rem;">Submit Request</button>
                             </div>
                         </div>
