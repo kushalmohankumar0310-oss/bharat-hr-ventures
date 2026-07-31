@@ -347,13 +347,29 @@ document.addEventListener('DOMContentLoaded', () => {
     if (selectEl) {
         selectEl.innerHTML = ''; // Clear default
         countryCodes.forEach(item => {
+            // Determine expected digits (defaults to 10 if not in list)
+            let digits = 10;
+            if (item.name === "Australia") digits = 9;
+            else if (item.name === "Singapore") digits = 8;
+            else if (item.name === "United Arab Emirates" || item.name === "Saudi Arabia") digits = 9;
+            else if (item.name === "China") digits = 11;
+            else if (item.name === "France" || item.name === "Italy" || item.name === "Spain") digits = 9;
+            
             const option = document.createElement('option');
             option.value = item.code;
             option.textContent = `${item.name} (${item.code})`;
+            option.setAttribute('data-digits', digits);
             if (item.name === "India") {
                 option.selected = true;
             }
             selectEl.appendChild(option);
+        });
+    }
+
+    const phoneInput = document.getElementById('homePhone');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', () => {
+            phoneInput.setCustomValidity("");
         });
     }
 });
@@ -450,6 +466,21 @@ window.submitHomeSurvey = (event) => {
     const phoneNum = document.getElementById('homePhone').value;
     const serviceRequired = document.getElementById('homeServiceRequired').value;
     const messageText = document.getElementById('homeMessage').value;
+
+    // Validate phone number digits length dynamically
+    const phoneInput = document.getElementById('homePhone');
+    const phoneNumClean = phoneNum.replace(/\D/g, ""); // Strip non-digits
+    const selectEl = document.getElementById('homeCountryCode');
+    const selectedOption = selectEl.options[selectEl.selectedIndex];
+    const expectedDigits = parseInt(selectedOption.getAttribute('data-digits')) || 10;
+
+    if (phoneNumClean.length !== expectedDigits) {
+        phoneInput.setCustomValidity(`Please enter exactly ${expectedDigits} digits for your phone number.`);
+        phoneInput.reportValidity();
+        return;
+    } else {
+        phoneInput.setCustomValidity("");
+    }
 
     // Check answers for personalized feedback
     const offersNone = document.querySelector('input[name="homeBenefitsOffer"][value="none"]:checked');
