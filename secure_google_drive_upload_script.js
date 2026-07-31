@@ -6,8 +6,8 @@
  * 1. Open your Google Sheet.
  * 2. Click Extensions -> Apps Script.
  * 3. Replace all default code with this script.
- * 4. Save and click Deploy -> Manage Deployments.
- * 5. Edit the active deployment, change version to "New version", and click Deploy.
+ * 4. Save and select "authorize" in the dropdown toolbar. Click Run to trigger permissions.
+ * 5. Deploy -> Manage Deployments -> Edit -> Select Version: "New version" -> Click Deploy.
  */
 
 function doPost(e) {
@@ -34,7 +34,7 @@ function doPost(e) {
       var blob = Utilities.newBlob(decodedBytes, contentType, data.filename);
       var file = folder.createFile(blob);
       
-      // Set sharing settings to "anyone with link can view" so administrators can open it via the link
+      // Set sharing settings so administrators can open it via the link
       file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
       
       var fileUrl = file.getUrl();
@@ -174,4 +174,10 @@ function doPost(e) {
     return ContentService.createTextOutput(JSON.stringify({ status: "error", message: error.toString() }))
       .setMimeType(ContentService.MimeType.JSON);
   }
+}
+
+// Helper function to trigger permissions check for Google Drive
+function authorize() {
+  DriveApp.getFoldersByName("test");
+  DriveApp.createFolder("temp_folder_test"); // Forces full read/write permission prompt
 }
