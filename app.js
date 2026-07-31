@@ -550,3 +550,163 @@ window.submitHomeSurvey = (event) => {
     if (formEl) formEl.style.display = 'none';
     if (thankYouEl) thankYouEl.style.display = 'block';
 };
+
+// ==========================================================================
+// ONBOARDING & DOCUMENT CENTER CONTROLLER
+// ==========================================================================
+window.downloadFormTemplate = () => {
+    const templateSelect = document.getElementById('docSelectTemplate');
+    const val = templateSelect.value;
+    if (!val) {
+        alert("Please select a statutory document template first.");
+        return;
+    }
+
+    let filePath = "";
+    let fileName = "";
+    if (val === "esi_form_1") {
+        filePath = "assets/forms/esi_form_1_declaration.txt";
+        fileName = "esi_form_1_declaration.txt";
+    } else if (val === "epf_form_11") {
+        filePath = "assets/forms/epf_form_11_declaration.txt";
+        fileName = "epf_form_11_declaration.txt";
+    } else if (val === "health_ins") {
+        filePath = "assets/forms/health_insurance_enrollment.txt";
+        fileName = "health_insurance_enrollment.txt";
+    } else if (val === "hr_checklist") {
+        filePath = "assets/forms/corporate_onboarding_checklist.txt";
+        fileName = "corporate_onboarding_checklist.txt";
+    }
+
+    if (filePath) {
+        const link = document.createElement("a");
+        link.href = filePath;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+};
+
+window.submitOnboardingDocument = (event) => {
+    event.preventDefault();
+
+    const company = document.getElementById('docCompany').value;
+    const name = document.getElementById('docContactName').value;
+    const email = document.getElementById('docEmail').value;
+    const templateSelect = document.getElementById('docSelectTemplate');
+    const docType = templateSelect.options[templateSelect.selectedIndex].text;
+    const fileInput = document.getElementById('docFileInput');
+
+    if (!fileInput.files || fileInput.files.length === 0) {
+        alert("Please select or drop a signed scan document to submit.");
+        return;
+    }
+
+    const file = fileInput.files[0];
+    if (file.size > 5 * 1024 * 1024) {
+        alert("File size exceeds 5MB limit. Please upload a smaller scan.");
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const base64Data = e.target.result.split(',')[1];
+        
+        const payload = {
+            action: "upload",
+            timestamp: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
+            companyName: company,
+            contactName: name,
+            emailAddress: email,
+            documentType: docType,
+            filename: file.name,
+            fileData: base64Data,
+            mimeType: file.type
+        };
+
+        if (GOOGLE_SCRIPT_URL) {
+            // Show loading state
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Encrypting & Uploading...';
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                // Show success screen
+                document.getElementById('docUploadForm').style.display = 'none';
+                document.getElementById('doc-upload-thank-you').style.display = 'block';
+            })
+            .catch(err => {
+                console.error("Upload error:", err);
+                alert("Upload failed. Please check your internet connection.");
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnHtml;
+            });
+        } else {
+            alert("Upload portal is ready! Configure the GOOGLE_SCRIPT_URL to save your documents.");
+            // Local preview success
+            document.getElementById('docUploadForm').style.display = 'none';
+            document.getElementById('doc-upload-thank-you').style.display = 'block';
+        }
+    };
+
+    reader.readAsDataURL(file);
+};
+
+window.addEventListener('DOMContentLoaded', () => {
+    // Document Upload Drag & Drop Event Listeners
+    const uploadZone = document.getElementById('upload-zone');
+    const fileInput = document.getElementById('docFileInput');
+    const uploadZoneText = document.getElementById('upload-zone-text');
+
+    if (uploadZone && fileInput) {
+        // Trigger file input click when uploadZone is clicked
+        uploadZone.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        // Update display name when file is selected
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                uploadZoneText.innerText = `Selected: ${fileInput.files[0].name}`;
+                uploadZone.style.borderColor = 'var(--color-accent)';
+            }
+        });
+
+        // Drag & Drop events
+        ['dragenter', 'dragover'].forEach(eventName => {
+            uploadZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                uploadZone.classList.add('dragover');
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            uploadZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                uploadZone.classList.remove('dragover');
+            }, false);
+        });
+
+        uploadZone.addEventListener('drop', (e) => {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                uploadZoneText.innerText = `Selected: ${files[0].name}`;
+                uploadZone.style.borderColor = 'var(--color-accent)';
+            }
+        }, false);
+    }
+});

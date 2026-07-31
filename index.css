@@ -1676,3 +1676,42 @@ select option {
 .survey-btn:hover {
     box-shadow: 0 6px 20px rgba(180, 83, 9, 0.6);
 }
+
+/* ==========================================================================
+   ONBOARDING & DOCUMENT CENTER STYLE UTILITIES
+   ========================================================================== */
+.document-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.upload-zone {
+    border: 2px dashed #cbd5e1;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    background: #f8fafc;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.upload-zone:hover, .upload-zone.dragover {
+    border-color: var(--color-accent) !important;
+    background: rgba(30, 58, 138, 0.02) !important;
+}
+
+.upload-zone.dragover i {
+    transform: translateY(-5px);
+    color: var(--color-accent) !important;
+}
+
+.upload-zone i {
+    transition: transform 0.2s ease;
+}
+
+@media (max-width: 900px) {
+    .document-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+    }
+}

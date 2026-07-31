@@ -1,0 +1,45 @@
+========================================================================
+BHARAT HR VENTURES PRIVATE LIMITED - COMPLIANCE DOCUMENTATION
+FORM 11: EMPLOYEES' PROVIDENT FUND (EPF) DECLARATION FORM
+========================================================================
+
+Please fill in block letters. After completion, scan/photo and upload to the 
+Document Center portal on the website.
+
+------------------------------------------------------------------------
+1. PERSONAL DETAILS
+------------------------------------------------------------------------
+Full Name: _________________________________________________
+Date of Birth (DD/MM/YYYY): ____/____/________
+Father's / Husband's Name: _________________________________
+Email Address: _____________________________________________
+Mobile Number: _____________________________________________
+
+------------------------------------------------------------------------
+2. PREVIOUS EMPLOYMENT DETAILS (IF APPLICABLE)
+------------------------------------------------------------------------
+Previous Universal Account Number (UAN): _____________________________
+Previous PF Member ID: _____________________________________________
+Date of Exit from Previous Job: ____/____/________
+Scheme Certificate Number (if any): __________________________________
+
+------------------------------------------------------------------------
+3. BANK ACCOUNT DETAILS (FOR PF WITHDRAWALS/TRANSFERS)
+------------------------------------------------------------------------
+Bank Name: _________________________________________________
+Branch Name: _______________________________________________
+Account Number: ____________________________________________
+IFSC Code: _____________________
+Aadhaar Number: ________________________ (Mandatory for UAN link)
+PAN Number: ________________________
+
+------------------------------------------------------------------------
+4. DECLARATION
+------------------------------------------------------------------------
+I certify that the details provided above are true to the best of my
+knowledge and I am aware of the rules governing EPF contributions.
+
+Date: ____/____/________
+
+Signature of Employee: __________________________
+========================================================================

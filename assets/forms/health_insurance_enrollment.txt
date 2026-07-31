@@ -1,0 +1,51 @@
+========================================================================
+BHARAT HR VENTURES PRIVATE LIMITED - COMPLIANCE DOCUMENTATION
+GROUP HEALTH & LIFE INSURANCE ENROLLMENT FORM
+========================================================================
+
+Please fill in block letters. After completion, scan/photo and upload to the 
+Document Center portal on the website.
+
+------------------------------------------------------------------------
+1. PRIMARY INSURED (EMPLOYEE) DETAILS
+------------------------------------------------------------------------
+Full Name: _________________________________________________
+Employee ID: _________________   Date of Joining: ____/____/________
+Date of Birth (DD/MM/YYYY): ____/____/________
+Gender (M/F/O): ____
+Mobile Number: ________________________   Email: ________________________
+
+------------------------------------------------------------------------
+2. FAMILY DEPENDENTS COVERAGE DETAILS
+------------------------------------------------------------------------
+Please list the family members you wish to include in the group health cover:
+
+1. Spouse: _________________________ DOB: ____/____/____ Gender: ___
+2. Child 1: _________________________ DOB: ____/____/____ Gender: ___
+3. Child 2: _________________________ DOB: ____/____/____ Gender: ___
+4. Parent 1: ________________________ DOB: ____/____/____ Gender: ___
+5. Parent 2: ________________________ DOB: ____/____/____ Gender: ___
+
+------------------------------------------------------------------------
+3. MEDICAL HISTORY / PRE-EXISTING CONDITIONS
+------------------------------------------------------------------------
+Please declare any chronic illness/pre-existing conditions for dependents:
+Dependent Name: ____________  Condition: _______________________________
+Dependent Name: ____________  Condition: _______________________________
+
+------------------------------------------------------------------------
+4. NOMINATION FOR LIFE INSURANCE COVER
+------------------------------------------------------------------------
+Nominee Name: _______________________________________________
+Relationship: _______________   Age: _____   Share (%): _____
+
+------------------------------------------------------------------------
+5. DECLARATION
+------------------------------------------------------------------------
+I declare that the information provided above is correct. I authorize 
+Bharat HR Ventures Private Limited to coordinate my enrollment.
+
+Date: ____/____/________
+
+Signature of Employee: __________________________
+========================================================================
