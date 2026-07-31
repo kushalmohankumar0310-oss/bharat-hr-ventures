@@ -741,17 +741,23 @@
                                 <div style="display: flex; gap: 8px;">
                                     <select id="homeCountryCode" style="width: 140px; flex-shrink: 0; font-size: 0.9rem; padding: 10px;" required>
                                         <option value="+91" selected>India (+91)</option>
-                                        <option value="+1">USA / Can (+1)</option>
-                                        <option value="+44">UK (+44)</option>
-                                        <option value="+61">Aus (+61)</option>
-                                        <option value="+971">UAE (+971)</option>
-                                        <option value="+65">Sgp (+65)</option>
-                                        <option value="+966">KSA (+966)</option>
-                                        <option value="+49">Ger (+49)</option>
-                                        <option value="+33">Fra (+33)</option>
                                     </select>
                                     <input type="tel" id="homePhone" required placeholder="XXXXX XXXXX" style="flex-grow: 1;">
                                 </div>
+                            </div>
+
+                            <div class="form-group" style="margin-top: 18px;">
+                                <label for="homeServiceRequired">Service Required *</label>
+                                <select id="homeServiceRequired" required>
+                                    <option value="" disabled selected>-- Select a Service --</option>
+                                    <option value="esi-compliance">ESI Compliance & Management</option>
+                                    <option value="pf-compliance">PF (Provident Fund) Compliance & Management</option>
+                                    <option value="documentation-advisory">End-to-End Documentation & Corporate Advisory</option>
+                                    <option value="insurance-schemes">Government-Backed Health & Life Insurance Integration</option>
+                                    <option value="talent-acquisition">Executive Recruitment & Talent Advisory</option>
+                                    <option value="payroll-admin">Payroll & HR Administration</option>
+                                    <option value="comprehensive-audit">Comprehensive HR Audit & Statutory Check</option>
+                                </select>
                             </div>
 
                             <div class="form-group">
