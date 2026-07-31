@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Compliance Assessment Survey | Bharat HR Ventures</title>
+    <meta name="description" content="Take our HR and statutory compliance survey to evaluate your business's ESI, PF, and employee insurance health.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body class="survey-page-body">
+    <!-- Navigation Bar -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-container">
+                <img src="assets/logo.png" alt="Bharat HR Ventures Logo" class="nav-logo">
+                <span class="logo-text">BHARAT <span class="accent-text">HR</span></span>
+            </a>
+            <a href="index.html" class="btn-secondary header-cta"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+        </div>
+    </header>
+
+    <!-- Survey Section -->
+    <section class="survey-section" style="padding-top: 140px; background-color: var(--color-bg-light); min-height: 100vh;">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-header text-center" style="margin-bottom: 40px;">
+                <h2>HR Compliance Assessment Survey</h2>
+                <p class="section-subtitle">Evaluate your organizational compliance health in 2 minutes</p>
+            </div>
+
+            <!-- Survey Card Container -->
+            <div class="contact-form-container glass-card" style="padding: 40px; margin-bottom: 50px;">
+                <!-- Progress Bar -->
+                <div class="survey-progress-container" style="margin-bottom: 30px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: var(--color-text-dark);">
+                        <span>Survey Progress</span>
+                        <span id="progress-text">Step 1 of 3</span>
+                    </div>
+                    <div style="width: 100%; height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden;">
+                        <div id="progress-bar" style="width: 33%; height: 100%; background: var(--color-accent); transition: width 0.4s ease;"></div>
+                    </div>
+                </div>
+
+                <form id="surveyForm" onsubmit="submitSurvey(event);">
+                    <!-- STEP 1: COMPLIANCE Q1 & Q2 -->
+                    <div class="survey-step active-step" id="step-1">
+                        <h3 style="margin-bottom: 20px; border-bottom: 2px solid var(--color-accent-light); padding-bottom: 10px;">Step 1: Statutory Registry Setup</h3>
+                        
+                        <div class="form-group">
+                            <label style="font-size: 1rem; margin-bottom: 12px; font-weight: 600;">1. What is your current total employee strength? *</label>
+                            <div class="survey-radio-group">
+                                <label class="survey-radio-label">
+                                    <input type="radio" name="workforceSize" value="less-than-10" required>
+                                    <span>Less than 10 employees</span>
+                                </label>
+                                <label class="survey-radio-label">
+                                    <input type="radio" name="workforceSize" value="10-19">
+                                    <span>10 to 19 employees</span>
+                                </label>
+                                <label class="survey-radio-label">
+                                    <input type="radio" name="workforceSize" value="20-or-more">
+                                    <span>20 or more employees</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 24px;">
+                            <label style="font-size: 1rem; margin-bottom: 12px; font-weight: 600;">2. What is your current ESI & PF registration status? *</label>
+                            <div class="survey-radio-group">
+                                <label class="survey-radio-label">
+                                    <input type="radio" name="esiPfStatus" value="both" required>
+                                    <span>We are fully registered for both ESI & PF</span>
+                                </label>
+                                <label class="survey-radio-label">
+                                    <input type="radio" name="esiPfStatus" value="pf-only">
+                                    <span>We only have PF registration</span>
+                                </label>
+                                <label class="survey-radio-label">
+                                    <input type="radio" name="esiPfStatus" value="esi-only">
+                                    <span>We only have ESI registration</span>
+                                </label>
+                                <label class="survey-radio-label">
+                                    <input type="radio" name="esiPfStatus" value="neither">
+                                    <span>Neither / Not registered yet</span>
+                                </label>
+                                <label class="survey-radio-label">
+                                    <input type="radio" name="esiPfStatus" value="not-sure">
+                                    <span>Not sure about our registration status</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; justify-content: flex-end; margin-top: 30px;">
+                            <button type="button" class="btn-cta" onclick="nextStep(2)">Next Step <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: COMPLIANCE Q3 & Q4 -->
+                    <div class="survey-step" id="step-2" style="display: none;">
+                        <h3 style="margin-bottom: 20px; border-bottom: 2px solid var(--color-accent-light); padding-bottom: 10px;">Step 2: Operations & Benefits</h3>
+                        
+                        <div class="form-group">
+                            <label style="font-size: 1rem; margin-bottom: 12px; font-weight: 600;">3. How do you currently manage payroll & employee documentation? *</label>
+                            <div class="survey-radio-group">
+                                <label class="survey-radio-label">
+                                    <input type="radio" name="payrollProcess" value="external" required>
+                                    <span>We hire an external payroll/compliance agency</span>
+                                </label>
+                                <label class="survey-radio-label">
+                                    <input type="radio" name="payrollProcess" value="in-house-manual">
+                                    <span>Managed in-house manually using spreadsheets</span>
+                                </label>
+                                <label class="survey-radio-label">
+                                    <input type="radio" name="payrollProcess" value="hr-software">
+                                    <span>Managed in-house using automated HR software</span>
+                                </label>
+                                <label class="survey-radio-label">
+                                    <input type="radio" name="payrollProcess" value="none">
+                                    <span>We do not have a structured documentation process yet</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 24px;">
+                            <label style="font-size: 1rem; margin-bottom: 12px; font-weight: 600;">4. Are your employees covered under healthcare/insurance programs? *</label>
+                            <div class="survey-radio-group">
+                                <label class="survey-radio-label">
+                                    <input type="radio" name="healthBenefits" value="group-insurance" required>
+                                    <span>Yes, covered under private group medical/life insurance</span>
+                                </label>
+                                <label class="survey-radio-label">
+                                    <input type="radio" name="healthBenefits" value="esi-only">
+                                    <span>Covered under government ESI scheme only</span>
+                                </label>
+                                <label class="survey-radio-label">
+                                    <input type="radio" name="healthBenefits" value="none">
+                                    <span>No health or accident insurance provided yet</span>
+                                </label>
+                                <label class="survey-radio-label">
+                                    <input type="radio" name="healthBenefits" value="integrate-gov">
+                                    <span>We want to integrate cheap government schemes (AB-PMJAY/PMJJBY/PMSBY)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; margin-top: 30px;">
+                            <button type="button" class="btn-secondary" onclick="prevStep(1)"><i class="fa-solid fa-arrow-left"></i> Previous</button>
+                            <button type="button" class="btn-cta" onclick="nextStep(3)">Next Step <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: CONTACT INFORMATION (ORIGINAL FORM PART) -->
+                    <div class="survey-step" id="step-3" style="display: none;">
+                        <h3 style="margin-bottom: 20px; border-bottom: 2px solid var(--color-accent-light); padding-bottom: 10px;">Step 3: Contact & Business Details</h3>
+                        <p style="margin-bottom: 20px; font-size: 0.95rem; color: var(--color-text-muted);">Please provide your business details to receive your personalized compliance analysis score report.</p>
+
+                        <div class="form-group">
+                            <label for="surveyCompanyName">Company Name *</label>
+                            <input type="text" id="surveyCompanyName" required placeholder="Your Company Ltd.">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="surveyContactName">Your Name *</label>
+                                <input type="text" id="surveyContactName" required placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="surveyContactEmail">Email Address *</label>
+                                <input type="email" id="surveyContactEmail" required placeholder="john@company.com">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="surveyPhone">Phone Number *</label>
+                            <div style="display: flex; gap: 10px;">
+                                <!-- International Calling Code Dropdown -->
+                                <select id="surveyCountryCode" style="width: 170px; flex-shrink: 0;" required>
+                                    <option value="+91" selected>India (+91)</option>
+                                    <option value="+1">USA / Canada (+1)</option>
+                                    <option value="+44">United Kingdom (+44)</option>
+                                    <option value="+61">Australia (+61)</option>
+                                    <option value="+971">UAE (+971)</option>
+                                    <option value="+65">Singapore (+65)</option>
+                                    <option value="+966">Saudi Arabia (+966)</option>
+                                    <option value="+49">Germany (+49)</option>
+                                    <option value="+33">France (+33)</option>
+                                    <option value="+81">Japan (+81)</option>
+                                    <option value="+86">China (+86)</option>
+                                    <option value="+27">South Africa (+27)</option>
+                                    <option value="+60">Malaysia (+60)</option>
+                                    <option value="+94">Sri Lanka (+94)</option>
+                                    <option value="+880">Bangladesh (+880)</option>
+                                    <option value="+64">New Zealand (+64)</option>
+                                    <option value="+41">Switzerland (+41)</option>
+                                    <option value="+31">Netherlands (+31)</option>
+                                    <option value="+39">Italy (+39)</option>
+                                    <option value="+34">Spain (+34)</option>
+                                </select>
+                                <input type="tel" id="surveyPhone" required placeholder="XXXXX XXXXX" style="flex-grow: 1;">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="surveyMessage">Message / Specific Requirements</label>
+                            <textarea id="surveyMessage" rows="3" placeholder="Any specific compliance concern or comment..."></textarea>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; margin-top: 30px;">
+                            <button type="button" class="btn-secondary" onclick="prevStep(2)"><i class="fa-solid fa-arrow-left"></i> Previous</button>
+                            <button type="submit" class="btn-cta">Submit Assessment</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Thank You Screen -->
+                <div id="thank-you-screen" style="display: none; text-align: center; padding: 40px 20px;">
+                    <div style="width: 80px; height: 80px; background: rgba(30, 58, 138, 0.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px auto; color: var(--color-accent); font-size: 3rem;">
+                        <i class="fa-solid fa-square-poll-vertical"></i>
+                    </div>
+                    <h2 style="font-size: 2.2rem; margin-bottom: 12px; color: var(--color-text-dark);">Thank You!</h2>
+                    <p style="font-size: 1.1rem; color: var(--color-text-body); max-width: 600px; margin: 0 auto 30px auto;">Your assessment answers have been recorded. Our certified compliance advisors are preparing your customized score card report and will connect with you via email shortly.</p>
+                    <div class="assessment-preview-card" id="assessment-preview-card" style="text-align: left; background: var(--color-bg-light); border: var(--border-light); border-radius: var(--radius-sm); padding: 24px; margin-bottom: 30px; border-left: 4px solid var(--color-accent-gold);">
+                        <h4 style="margin-bottom: 12px; font-size: 1.1rem; color: var(--color-text-dark);"><i class="fa-solid fa-circle-exclamation" style="color: var(--color-accent-gold);"></i> Initial Estimate:</h4>
+                        <p id="assessment-feedback" style="font-size: 0.95rem; line-height: 1.6;"></p>
+                    </div>
+                    <a href="index.html" class="btn-cta">Return to Home</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-about">
+                <div class="logo-container">
+                    <img src="assets/logo.png" alt="Bharat HR Ventures Logo" class="footer-logo">
+                    <span class="logo-text">BHARAT <span class="accent-text">HR</span></span>
+                </div>
+                <p>BHARAT H R VENTURES PRIVATE LIMITED is committed to building elite teams with precision, compliance, and integrity since inception. Your trusted compliance and workforce protection partner.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="index.html#home">Home</a>
+                <a href="index.html#about">About Us</a>
+                <a href="index.html#bharat-process">BHARAT Process</a>
+                <a href="index.html#services">Services & Schemes</a>
+                <a href="index.html#why-us">Why Us</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Legal Presence & Contact</h4>
+                <p><strong>Headquarters:</strong> Bengaluru, Karnataka, India</p>
+                <p><strong>Phone:</strong> <a href="tel:+918069859722" style="color: #cbd5e1; text-decoration: underline;">+91 (80) 6985-9722</a></p>
+                <p><strong>Email:</strong> <a href="mailto:info@bharathrventures.com" style="color: #cbd5e1; text-decoration: underline;">info@bharathrventures.com</a></p>
+                <p><strong>Scope:</strong> National Statutory Compliance (ESI, EPF, LWF, and labor laws)</p>
+                <p class="copyright">© 2026 Bharat HR Ventures Private Limited. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Survey Script -->
+    <script>
+        function nextStep(stepNumber) {
+            // Validate required inputs of current step
+            const currentStep = document.querySelector('.survey-step.active-step');
+            const requiredInputs = currentStep.querySelectorAll('[required]');
+            let isValid = true;
+
+            requiredInputs.forEach(input => {
+                if (input.type === 'radio') {
+                    const name = input.name;
+                    const checked = currentStep.querySelector(`input[name="${name}"]:checked`);
+                    if (!checked) isValid = false;
+                } else {
+                    if (!input.value.trim()) isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                alert('Please answer the required questions before proceeding.');
+                return;
+            }
+
+            // Hide all steps
+            document.querySelectorAll('.survey-step').forEach(step => {
+                step.style.display = 'none';
+                step.classList.remove('active-step');
+            });
+
+            // Show selected step
+            const targetStep = document.getElementById(`step-${stepNumber}`);
+            targetStep.style.display = 'block';
+            targetStep.classList.add('active-step');
+
+            // Update Progress Bar
+            const percent = stepNumber === 2 ? 66 : 100;
+            document.getElementById('progress-bar').style.width = `${percent}%`;
+            document.getElementById('progress-text').innerText = `Step ${stepNumber} of 3`;
+        }
+
+        function prevStep(stepNumber) {
+            document.querySelectorAll('.survey-step').forEach(step => {
+                step.style.display = 'none';
+                step.classList.remove('active-step');
+            });
+
+            const targetStep = document.getElementById(`step-${stepNumber}`);
+            targetStep.style.display = 'block';
+            targetStep.classList.add('active-step');
+
+            const percent = stepNumber === 1 ? 33 : 66;
+            document.getElementById('progress-bar').style.width = `${percent}%`;
+            document.getElementById('progress-text').innerText = `Step ${stepNumber} of 3`;
+        }
+
+        function submitSurvey(event) {
+            event.preventDefault();
+            
+            // Collect Form Details
+            const company = document.getElementById('surveyCompanyName').value;
+            const name = document.getElementById('surveyContactName').value;
+            const email = document.getElementById('surveyContactEmail').value;
+            const code = document.getElementById('surveyCountryCode').value;
+            const phone = document.getElementById('surveyPhone').value;
+            
+            const workforce = document.querySelector('input[name="workforceSize"]:checked').value;
+            const esiPf = document.querySelector('input[name="esiPfStatus"]:checked').value;
+            
+            // Calculate a simple compliance risk warning
+            let riskAssessment = "";
+            if (workforce === '20-or-more' && esiPf === 'neither') {
+                riskAssessment = `High Risk Warning: Your workforce exceeds 20 employees and you have no ESI/PF registration. Under Indian labor law, EPFO registration is mandatory for establishments with 20 or more employees. Bharat HR Ventures will contact you immediately to avoid legal penalties.`;
+            } else if (workforce === '10-19' && (esiPf === 'neither' || esiPf === 'pf-only')) {
+                riskAssessment = `Medium Risk: With 10-19 employees, ESI registration is mandatory if you are located in an implemented area. We recommend setting up statutory compliance as soon as possible.`;
+            } else {
+                riskAssessment = `Low Risk/Optimization opportunity: Your base setup looks secure. We will help you optimize your monthly EPF filing processes and review ESI claims tracking to reduce costs.`;
+            }
+
+            // Display Feedback
+            document.getElementById('assessment-feedback').innerText = riskAssessment;
+            
+            // Hide Form & Progress
+            document.getElementById('surveyForm').style.display = 'none';
+            document.querySelector('.survey-progress-container').style.display = 'none';
+            
+            // Show Thank You Screen
+            document.getElementById('thank-you-screen').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
