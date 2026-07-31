@@ -361,7 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ==========================================================================
 // GOOGLE SHEETS INTEGRATION (Set your Apps Script URL here)
 // ==========================================================================
-const GOOGLE_SCRIPT_URL = "";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyEiythMKIfSxGLYbQJnEHsVCSH2GC4Bmu_KzUVlQ--o79ccbkVd04yV_RzCcUfiKTv/exec";
 
 // ==========================================================================
 // HOME EMBEDDED SURVEY CONTROLLER
