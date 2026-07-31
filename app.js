@@ -359,6 +359,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================================================
+// GOOGLE SHEETS INTEGRATION (Set your Apps Script URL here)
+// ==========================================================================
+const GOOGLE_SCRIPT_URL = "";
+
+// ==========================================================================
 // HOME EMBEDDED SURVEY CONTROLLER
 // ==========================================================================
 window.nextHomeStep = (stepNumber) => {
@@ -444,6 +449,7 @@ window.submitHomeSurvey = (event) => {
     const phoneCode = document.getElementById('homeCountryCode').value;
     const phoneNum = document.getElementById('homePhone').value;
     const serviceRequired = document.getElementById('homeServiceRequired').value;
+    const messageText = document.getElementById('homeMessage').value;
 
     // Check answers for personalized feedback
     const offersNone = document.querySelector('input[name="homeBenefitsOffer"][value="none"]:checked');
@@ -460,6 +466,44 @@ window.submitHomeSurvey = (event) => {
         riskMessage = "EXPANSION AUDIT ESTIMATE: Since you plan to expand benefits in the next year, we will help you deploy ESI/EPF structures, coordinate cashless group insurance products, and ensure all filings are aligned with statutory requirements.";
     } else {
         riskMessage = "COMPLIANCE SCORE: Your baseline registrations appear active. We will connect with you to review your monthly returns and audit your files for operational and statutory efficiency.";
+    }
+
+    // Compile survey data for submission
+    const formData = {
+        timestamp: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
+        companyName: company,
+        contactName: name,
+        emailAddress: email,
+        phoneNumber: `${phoneCode} ${phoneNum}`,
+        serviceRequired: serviceRequired,
+        message: messageText,
+        q1Importance: document.querySelector('input[name="homeQ1Importance"]:checked')?.value || "",
+        q2Benefits: Array.from(document.querySelectorAll('input[name="homeBenefitsOffer"]:checked')).map(el => {
+            const spanText = el.closest('label').querySelector('span').innerText;
+            return spanText;
+        }).join(", "),
+        q3Reason: document.querySelector('input[name="homeQ3Reason"]:checked')?.closest('label').querySelector('span').innerText || "",
+        q4Satisfaction: document.querySelector('input[name="homeQ4Satisfaction"]:checked')?.closest('label').querySelector('span').innerText || "",
+        q5Productivity: document.querySelector('input[name="homeQ5Productivity"]:checked')?.closest('label').querySelector('span').innerText || "",
+        q6Challenges: Array.from(document.querySelectorAll('input[name="homeChallenges"]:checked')).map(el => {
+            const spanText = el.closest('label').querySelector('span').innerText;
+            return spanText;
+        }).join(", "),
+        q7Expansion: document.querySelector('input[name="homeQ7Expansion"]:checked')?.closest('label').querySelector('span').innerText || ""
+    };
+
+    // Post to Google Sheet Web App if URL is provided
+    if (GOOGLE_SCRIPT_URL) {
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(() => console.log("Lead successfully submitted to Google Sheet."))
+        .catch(err => console.error("Error submitting lead to Google Sheet:", err));
     }
 
     // Show feedback and toggle screens
