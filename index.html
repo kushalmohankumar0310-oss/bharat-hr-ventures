@@ -458,59 +458,201 @@
         <div class="container">
             <div class="contact-grid">
                 <div class="contact-info">
-                    <h2>Evaluate Your HR & Compliance Health</h2>
-                    <p>Take our quick 2-minute HR and statutory compliance survey. Identify gaps in your ESI, PF, and employee insurance policies, and receive a customized assessment report for your business.</p>
+                    <h2>Ready to Secure Your Business?</h2>
+                    <p>Reach out to us to schedule an introductory consultation, audit your current ESI/PF compliance status, or hire talent. Fill out our 2-minute compliance survey to get started.</p>
                     
-                    <div class="survey-cta-block">
-                        <div class="survey-features">
-                            <div class="s-feature-item"><i class="fa-solid fa-circle-check"></i> <span>Instant compliance gap identification</span></div>
-                            <div class="s-feature-item"><i class="fa-solid fa-circle-check"></i> <span>Covers ESI, EPF & labor regulations</span></div>
-                            <div class="s-feature-item"><i class="fa-solid fa-circle-check"></i> <span>Personalized advisory recommendations</span></div>
+                    <div class="info-list">
+                        <div class="info-item">
+                            <div class="info-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                            <div>
+                                <h4>Our Presence</h4>
+                                <p>Bengaluru, India</p>
+                            </div>
                         </div>
-                        <a href="survey.html" class="btn-cta survey-btn"><i class="fa-solid fa-clipboard-question"></i> Take Compliance Survey</a>
+                        <div class="info-item">
+                            <div class="info-icon"><i class="fa-solid fa-phone-volume"></i></div>
+                            <div>
+                                <h4>Call Us</h4>
+                                <p><a href="tel:+918069859722">+91 (80) 6985-9722</a></p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+                            <div>
+                                <h4>Email Us</h4>
+                                <p><a href="mailto:info@bharathrventures.com">info@bharathrventures.com</a></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="contact-form-container glass-card">
-                    <h3>Get a Free HR Assessment</h3>
-                    <form id="contactForm" onsubmit="event.preventDefault(); alert('Assessment Request Submitted Successfully! Our team will contact you shortly.');">
-                        <div class="form-group">
-                            <label for="companyName">Company Name *</label>
-                            <input type="text" id="companyName" required placeholder="Your Company Ltd.">
+                <div class="contact-form-container glass-card" id="home-survey-card">
+                    <h3 style="margin-bottom: 12px;">Get a Free HR Assessment</h3>
+                    
+                    <!-- Progress Bar -->
+                    <div class="survey-progress-container" style="margin-bottom: 20px; padding: 12px 16px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-weight: 600; font-size: 0.85rem; color: var(--color-text-dark);">
+                            <span>Survey Progress</span>
+                            <span id="survey-progress-text">Step 1 of 3</span>
                         </div>
-                        <div class="form-row">
+                        <div style="width: 100%; height: 6px; background: #e2e8f0; border-radius: 4px; overflow: hidden;">
+                            <div id="survey-progress-bar" style="width: 33%; height: 100%; background: var(--color-accent); transition: width 0.3s ease;"></div>
+                        </div>
+                    </div>
+
+                    <form id="homeSurveyForm" onsubmit="submitHomeSurvey(event);">
+                        <!-- STEP 1: COMPLIANCE Q1 & Q2 -->
+                        <div class="home-survey-step active-step" id="home-step-1">
                             <div class="form-group">
-                                <label for="contactName">Your Name *</label>
-                                <input type="text" id="contactName" required placeholder="John Doe">
+                                <label style="font-size: 0.95rem; margin-bottom: 8px; font-weight: 600; display: block;">1. What is your current total employee strength? *</label>
+                                <div class="survey-radio-group">
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeWorkforceSize" value="less-than-10" required>
+                                        <span>Less than 10 employees</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeWorkforceSize" value="10-19">
+                                        <span>10 to 19 employees</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeWorkforceSize" value="20-or-more">
+                                        <span>20 or more employees</span>
+                                    </label>
+                                </div>
                             </div>
+
+                            <div class="form-group" style="margin-top: 18px;">
+                                <label style="font-size: 0.95rem; margin-bottom: 8px; font-weight: 600; display: block;">2. ESI & PF registration status? *</label>
+                                <div class="survey-radio-group">
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeEsiPfStatus" value="both" required>
+                                        <span>Fully registered for ESI & PF</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeEsiPfStatus" value="pf-only">
+                                        <span>PF only</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeEsiPfStatus" value="esi-only">
+                                        <span>ESI only</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeEsiPfStatus" value="neither">
+                                        <span>Not registered / Not sure</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; justify-content: flex-end; margin-top: 24px;">
+                                <button type="button" class="btn-cta" onclick="nextHomeStep(2)" style="padding: 10px 20px; font-size: 0.9rem;">Next Step <i class="fa-solid fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- STEP 2: COMPLIANCE Q3 & Q4 -->
+                        <div class="home-survey-step" id="home-step-2" style="display: none;">
                             <div class="form-group">
-                                <label for="contactPhone">Phone Number *</label>
-                                <input type="tel" id="contactPhone" required placeholder="+91 XXXXX XXXXX">
+                                <label style="font-size: 0.95rem; margin-bottom: 8px; font-weight: 600; display: block;">3. How do you manage payroll & documentation? *</label>
+                                <div class="survey-radio-group">
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homePayrollProcess" value="external" required>
+                                        <span>External compliance agency</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homePayrollProcess" value="in-house-manual">
+                                        <span>Spreadsheets / In-house manual</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homePayrollProcess" value="hr-software">
+                                        <span>HR payroll software</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-top: 18px;">
+                                <label style="font-size: 0.95rem; margin-bottom: 8px; font-weight: 600; display: block;">4. Employee health/insurance cover? *</label>
+                                <div class="survey-radio-group">
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeHealthBenefits" value="group-insurance" required>
+                                        <span>Group medical & life insurance</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeHealthBenefits" value="esi-only">
+                                        <span>ESI government scheme only</span>
+                                    </label>
+                                    <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                                        <input type="radio" name="homeHealthBenefits" value="none">
+                                        <span>No insurance / Want to integrate</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; justify-content: space-between; margin-top: 24px;">
+                                <button type="button" class="btn-secondary" onclick="prevHomeStep(1)" style="padding: 10px 20px; font-size: 0.9rem;"><i class="fa-solid fa-arrow-left"></i> Prev</button>
+                                <button type="button" class="btn-cta" onclick="nextHomeStep(3)" style="padding: 10px 20px; font-size: 0.9rem;">Next Step <i class="fa-solid fa-arrow-right"></i></button>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="contactEmail">Email Address *</label>
-                            <input type="email" id="contactEmail" required placeholder="john@company.com">
+
+                        <!-- STEP 3: CONTACT INFO & SUBMIT -->
+                        <div class="home-survey-step" id="home-step-3" style="display: none;">
+                            <div class="form-group">
+                                <label for="homeCompanyName">Company Name *</label>
+                                <input type="text" id="homeCompanyName" required placeholder="Your Company Ltd.">
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="homeContactName">Your Name *</label>
+                                    <input type="text" id="homeContactName" required placeholder="John Doe">
+                                </div>
+                                <div class="form-group">
+                                    <label for="homeContactEmail">Email Address *</label>
+                                    <input type="email" id="homeContactEmail" required placeholder="john@company.com">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="homePhone">Phone Number *</label>
+                                <div style="display: flex; gap: 8px;">
+                                    <select id="homeCountryCode" style="width: 140px; flex-shrink: 0; font-size: 0.9rem; padding: 10px;" required>
+                                        <option value="+91" selected>India (+91)</option>
+                                        <option value="+1">USA / Can (+1)</option>
+                                        <option value="+44">UK (+44)</option>
+                                        <option value="+61">Aus (+61)</option>
+                                        <option value="+971">UAE (+971)</option>
+                                        <option value="+65">Sgp (+65)</option>
+                                        <option value="+966">KSA (+966)</option>
+                                        <option value="+49">Ger (+49)</option>
+                                        <option value="+33">Fra (+33)</option>
+                                    </select>
+                                    <input type="tel" id="homePhone" required placeholder="XXXXX XXXXX" style="flex-grow: 1;">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="homeMessage">Message / Requirements</label>
+                                <textarea id="homeMessage" rows="2" placeholder="Describe requirements..."></textarea>
+                            </div>
+
+                            <div style="display: flex; justify-content: space-between; margin-top: 24px;">
+                                <button type="button" class="btn-secondary" onclick="prevHomeStep(2)" style="padding: 10px 20px; font-size: 0.9rem;"><i class="fa-solid fa-arrow-left"></i> Prev</button>
+                                <button type="submit" class="btn-cta" style="padding: 10px 20px; font-size: 0.9rem;">Submit Request</button>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="serviceType">Service Needed</label>
-                            <select id="serviceType">
-                                <option value="full">End-to-End HR Services</option>
-                                <option value="compliance">ESI & PF Compliance Setup</option>
-                                <option value="recruitment">Recruitment & Staffing</option>
-                                <option value="advisory">Legal Advisory / Documentation</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="contactMessage">Message / Requirements</label>
-                            <textarea id="contactMessage" rows="4" placeholder="Briefly describe your requirements..."></textarea>
-                        </div>
-                        <button type="submit" class="btn-cta btn-block">Submit Request</button>
                     </form>
+
+                    <!-- Home Thank You Screen -->
+                    <div id="home-thank-you" style="display: none; text-align: center; padding: 20px 10px;">
+                        <div style="width: 60px; height: 60px; background: var(--color-accent-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto; color: var(--color-accent); font-size: 2.2rem;">
+                            <i class="fa-solid fa-square-poll-vertical"></i>
+                        </div>
+                        <h3 style="font-size: 1.6rem; margin-bottom: 8px; color: var(--color-text-dark);">Thank You!</h3>
+                        <p style="font-size: 0.95rem; color: var(--color-text-body); margin-bottom: 20px;">Your details and survey answers have been recorded. Our team will contact you shortly with your report.</p>
+                        <div style="text-align: left; background: var(--color-bg-light); border: var(--border-light); border-radius: var(--radius-sm); padding: 16px; border-left: 4px solid var(--color-accent-gold);">
+                            <h5 style="margin-bottom: 6px; font-size: 0.95rem; color: var(--color-text-dark);"><i class="fa-solid fa-circle-exclamation" style="color: var(--color-accent-gold);"></i> Risk Estimate:</h5>
+                            <p id="home-assessment-feedback" style="font-size: 0.85rem; line-height: 1.5; color: var(--color-text-body);"></p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer class="footer">

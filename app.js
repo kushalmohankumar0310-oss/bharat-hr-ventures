@@ -140,3 +140,105 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', checkReveal);
     checkReveal(); // Initial trigger for elements already in view
 });
+
+// ==========================================================================
+// HOME EMBEDDED SURVEY CONTROLLER
+// ==========================================================================
+window.nextHomeStep = (stepNumber) => {
+    const currentStepEl = document.querySelector('.home-survey-step.active-step');
+    if (!currentStepEl) return;
+
+    // Validate required radio inputs in current step
+    const requiredRadios = currentStepEl.querySelectorAll('input[type="radio"][required]');
+    let isValid = true;
+    
+    requiredRadios.forEach(radio => {
+        const name = radio.name;
+        const checked = currentStepEl.querySelector(`input[name="${name}"]:checked`);
+        if (!checked) isValid = false;
+    });
+
+    if (!isValid) {
+        alert('Please answer the required questions before proceeding.');
+        return;
+    }
+
+    // Hide all steps
+    document.querySelectorAll('.home-survey-step').forEach(step => {
+        step.style.display = 'none';
+        step.classList.remove('active-step');
+    });
+
+    // Show targeted step
+    const targetStepEl = document.getElementById(`home-step-${stepNumber}`);
+    if (targetStepEl) {
+        targetStepEl.style.display = 'block';
+        targetStepEl.classList.add('active-step');
+    }
+
+    // Update progress bar UI
+    const percent = stepNumber === 2 ? 66 : 100;
+    const progressText = document.getElementById('survey-progress-text');
+    const progressBar = document.getElementById('survey-progress-bar');
+    if (progressText) progressText.innerText = `Step ${stepNumber} of 3`;
+    if (progressBar) progressBar.style.width = `${percent}%`;
+};
+
+window.prevHomeStep = (stepNumber) => {
+    // Hide all steps
+    document.querySelectorAll('.home-survey-step').forEach(step => {
+        step.style.display = 'none';
+        step.classList.remove('active-step');
+    });
+
+    // Show targeted step
+    const targetStepEl = document.getElementById(`home-step-${stepNumber}`);
+    if (targetStepEl) {
+        targetStepEl.style.display = 'block';
+        targetStepEl.classList.add('active-step');
+    }
+
+    // Update progress bar UI
+    const percent = stepNumber === 1 ? 33 : 66;
+    const progressText = document.getElementById('survey-progress-text');
+    const progressBar = document.getElementById('survey-progress-bar');
+    if (progressText) progressText.innerText = `Step ${stepNumber} of 3`;
+    if (progressBar) progressBar.style.width = `${percent}%`;
+};
+
+window.submitHomeSurvey = (event) => {
+    event.preventDefault();
+
+    // Verify fields
+    const company = document.getElementById('homeCompanyName').value;
+    const name = document.getElementById('homeContactName').value;
+    const email = document.getElementById('homeContactEmail').value;
+    const phoneCode = document.getElementById('homeCountryCode').value;
+    const phoneNum = document.getElementById('homePhone').value;
+
+    const workforce = document.querySelector('input[name="homeWorkforceSize"]:checked').value;
+    const status = document.querySelector('input[name="homeEsiPfStatus"]:checked').value;
+
+    // Build risk estimate feedback message
+    let riskMessage = "";
+    if (workforce === "20-or-more" && status === "neither") {
+        riskMessage = "CRITICAL LEGAL RISK: Establishments with 20 or more employees are legally mandated to register for EPF under Indian labor laws. Operating without ESI/PF registers can invite penal interest and damages. Bharat HR Ventures will contact you immediately to file your registration and protect your enterprise.";
+    } else if (workforce === "10-19" && (status === "neither" || status === "pf-only")) {
+        riskMessage = "MODERATE RISK: Establishments with 10 or more employees are required to comply with ESI laws. You are vulnerable to compliance audits. We recommend implementing ESI coverage immediately.";
+    } else {
+        riskMessage = "COMPLIANT STATUS: Your baseline registrations appear secure. We will review your payroll and monthly filing processes to identify opportunities to optimize employee insurance claims and reduce overheads.";
+    }
+
+    // Show feedback and toggle screens
+    const feedbackEl = document.getElementById('home-assessment-feedback');
+    if (feedbackEl) feedbackEl.innerText = riskMessage;
+
+    // Hide progress bar and form
+    const progressContainer = document.querySelector('.survey-progress-container');
+    const formEl = document.getElementById('homeSurveyForm');
+    const thankYouEl = document.getElementById('home-thank-you');
+
+    if (progressContainer) progressContainer.style.display = 'none';
+    if (formEl) formEl.style.display = 'none';
+    if (thankYouEl) thankYouEl.style.display = 'block';
+};
