@@ -454,110 +454,6 @@
         </div>
     </section>
 
-    <!-- Document Onboarding Center Section -->
-    <section id="document-center" class="document-section" style="padding: 100px 0; background: var(--color-bg-light); border-top: var(--border-light); border-bottom: var(--border-light);">
-        <div class="container">
-            <div class="section-header text-center" style="margin-bottom: 60px;">
-                <span class="badge" style="background-color: rgba(30, 58, 138, 0.05); color: var(--color-accent); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; padding: 6px 16px; border-radius: var(--radius-sm); border: var(--border-accent);">Onboarding Portal</span>
-                <h2 style="margin-top: 15px; font-size: 2.2rem; color: var(--color-text-dark);">Compliance & Onboarding Document Center</h2>
-                <p style="max-width: 600px; margin: 15px auto 0 auto; color: var(--color-text-body); line-height: 1.6;">Select your service, download the statutory form template, fill it out, scan it, and upload the signed copy securely to our backend database.</p>
-            </div>
-
-            <div class="document-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;">
-                <!-- Instructions / Form Templates Left Column -->
-                <div class="doc-instructions-panel">
-                    <h3 style="font-size: 1.4rem; color: var(--color-text-dark); margin-bottom: 20px; border-bottom: 2px solid var(--color-accent-light); padding-bottom: 10px;">Statutory Form Downloads</h3>
-                    <p style="color: var(--color-text-body); margin-bottom: 24px; font-size: 0.95rem; line-height: 1.6;">Follow these quick steps to submit your compliance onboarding requirements:</p>
-                    
-                    <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 16px; margin-bottom: 30px;">
-                        <li style="display: flex; gap: 16px; align-items: flex-start;">
-                            <div style="width: 28px; height: 28px; background: var(--color-accent-light); color: var(--color-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; font-size: 0.85rem;">1</div>
-                            <div>
-                                <h4 style="font-size: 1rem; color: var(--color-text-dark); margin-bottom: 4px;">Choose and Download</h4>
-                                <p style="font-size: 0.85rem; color: var(--color-text-body); line-height: 1.5;">Select a statutory onboarding form from the list and download the template structure.</p>
-                            </div>
-                        </li>
-                        <li style="display: flex; gap: 16px; align-items: flex-start;">
-                            <div style="width: 28px; height: 28px; background: var(--color-accent-light); color: var(--color-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; font-size: 0.85rem;">2</div>
-                            <div>
-                                <h4 style="font-size: 1rem; color: var(--color-text-dark); margin-bottom: 4px;">Print, Fill, and Sign</h4>
-                                <p style="font-size: 0.85rem; color: var(--color-text-body); line-height: 1.5;">Print the form, fill in the block letters, sign the declaration physically, and scan or photo it.</p>
-                            </div>
-                        </li>
-                        <li style="display: flex; gap: 16px; align-items: flex-start;">
-                            <div style="width: 28px; height: 28px; background: var(--color-accent-light); color: var(--color-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; font-size: 0.85rem;">3</div>
-                            <div>
-                                <h4 style="font-size: 1rem; color: var(--color-text-dark); margin-bottom: 4px;">Secure Upload</h4>
-                                <p style="font-size: 0.85rem; color: var(--color-text-body); line-height: 1.5;">Drop the signed copy in the portal to the right and click Submit to write to our secure vault.</p>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <div class="glass-card" style="padding: 24px; border-left: 4px solid var(--color-accent-gold); background: var(--color-bg-white); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
-                        <h4 style="color: var(--color-text-dark); margin-bottom: 8px; font-size: 1rem;"><i class="fa-solid fa-shield-halved" style="color: var(--color-accent-gold); margin-right: 8px;"></i> Secure Verification</h4>
-                        <p style="font-size: 0.85rem; color: var(--color-text-body); line-height: 1.6; margin: 0;">Files are saved in a highly encrypted, write-only Google Workspace storage. Our compliance auditors will review submissions within 24 hours.</p>
-                    </div>
-                </div>
-
-                <!-- Secure Upload Form Right Column -->
-                <div class="contact-form-container glass-card" style="background: var(--color-bg-white); padding: 40px; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);">
-                    <h3 style="margin-bottom: 24px; font-size: 1.4rem; color: var(--color-text-dark); text-align: center;"><i class="fa-solid fa-cloud-arrow-up" style="color: var(--color-accent); margin-right: 10px;"></i> Onboarding Upload Portal</h3>
-                    
-                    <form id="docUploadForm" onsubmit="submitOnboardingDocument(event);">
-                        <div class="form-group" style="margin-bottom: 18px;">
-                            <label style="font-size: 0.9rem; margin-bottom: 6px; font-weight: 600; display: block;" for="docSelectTemplate">1. Select Statutory Document *</label>
-                            <select id="docSelectTemplate" required style="width: 100%; font-size: 0.95rem; padding: 10px 14px;">
-                                <option value="" disabled selected>-- Choose Document Template --</option>
-                                <option value="esi_form_1">ESI Form 1 Declaration (Employees' State Insurance)</option>
-                                <option value="epf_form_11">EPF Form 11 Declaration (Provident Fund)</option>
-                                <option value="health_ins">Group Health Insurance Enrollment Form</option>
-                                <option value="hr_checklist">New Employee Onboarding & Compliance Checklist</option>
-                            </select>
-                            <button type="button" class="btn-cta" onclick="downloadFormTemplate();" style="width: 100%; margin-top: 10px; padding: 10px; justify-content: center; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 8px;"><i class="fa-solid fa-download"></i> Download Selected Template</button>
-                        </div>
-
-                        <div class="form-group" style="margin-bottom: 18px; margin-top: 24px;">
-                            <label style="font-size: 0.9rem; margin-bottom: 6px; font-weight: 600; display: block;" for="docCompany">2. Business / Company Name *</label>
-                            <input type="text" id="docCompany" required placeholder="Enter Company Name" style="width: 100%; padding: 10px 14px;">
-                        </div>
-
-                        <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px;">
-                            <div class="form-group">
-                                <label style="font-size: 0.9rem; margin-bottom: 6px; font-weight: 600; display: block;" for="docContactName">Your Name *</label>
-                                <input type="text" id="docContactName" required placeholder="Full Name" style="width: 100%; padding: 10px 14px;">
-                            </div>
-                            <div class="form-group">
-                                <label style="font-size: 0.9rem; margin-bottom: 6px; font-weight: 600; display: block;" for="docEmail">Email Address *</label>
-                                <input type="email" id="docEmail" required placeholder="email@company.com" style="width: 100%; padding: 10px 14px;">
-                            </div>
-                        </div>
-
-                        <div class="form-group" style="margin-bottom: 24px;">
-                            <label style="font-size: 0.9rem; margin-bottom: 8px; font-weight: 600; display: block;">3. Drag & Drop Signed Scan *</label>
-                            <div class="upload-zone" id="upload-zone" style="border: 2px dashed #cbd5e1; border-radius: 8px; padding: 30px; text-align: center; background: #f8fafc; cursor: pointer; transition: all 0.2s ease;">
-                                <i class="fa-solid fa-file-pdf" style="font-size: 2.2rem; color: #94a3b8; margin-bottom: 12px; display: block;"></i>
-                                <span style="font-size: 0.9rem; font-weight: 600; color: var(--color-text-dark); display: block;" id="upload-zone-text">Drag file here or click to browse</span>
-                                <span style="font-size: 0.75rem; color: var(--color-text-body); display: block; margin-top: 4px;">Supports PDF, DOCX, or Images (Max 5MB)</span>
-                                <input type="file" id="docFileInput" required style="display: none;" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg">
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn-cta" style="width: 100%; justify-content: center; font-size: 1rem; padding: 12px;"><i class="fa-solid fa-shield-halved"></i> Submit Document Securely</button>
-                    </form>
-
-                    <!-- Success Screen -->
-                    <div id="doc-upload-thank-you" style="display: none; text-align: center; padding: 20px 10px;">
-                        <div style="width: 60px; height: 60px; background: var(--color-accent-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto; color: var(--color-accent); font-size: 2.2rem;">
-                            <i class="fa-solid fa-circle-check" style="color: #10b981;"></i>
-                        </div>
-                        <h3 style="font-size: 1.6rem; margin-bottom: 8px; color: var(--color-text-dark);">Upload Successful!</h3>
-                        <p style="font-size: 0.95rem; color: var(--color-text-body); margin-bottom: 0;">Your file has been base64 encrypted and successfully uploaded. A receipt containing the Google Drive folder reference has been logged. Our compliance auditors will review the document details shortly.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <div class="container">
@@ -894,6 +790,110 @@
     </div>
 </section>
 
+    <!-- Document Onboarding Center Section -->
+    <section id="document-center" class="document-section" style="padding: 100px 0; background: var(--color-bg-light); border-top: var(--border-light); border-bottom: var(--border-light);">
+        <div class="container">
+            <div class="section-header text-center" style="margin-bottom: 60px;">
+                <span class="badge" style="background-color: rgba(30, 58, 138, 0.05); color: var(--color-accent); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; padding: 6px 16px; border-radius: var(--radius-sm); border: var(--border-accent);">Onboarding Portal</span>
+                <h2 style="margin-top: 15px; font-size: 2.2rem; color: var(--color-text-dark);">Compliance & Onboarding Document Center</h2>
+                <p style="max-width: 600px; margin: 15px auto 0 auto; color: var(--color-text-body); line-height: 1.6;">Select your service, download the statutory form template, fill it out, scan it, and upload the signed copy securely to our backend database.</p>
+            </div>
+
+            <div class="document-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;">
+                <!-- Instructions / Form Templates Left Column -->
+                <div class="doc-instructions-panel">
+                    <h3 style="font-size: 1.4rem; color: var(--color-text-dark); margin-bottom: 20px; border-bottom: 2px solid var(--color-accent-light); padding-bottom: 10px;">Statutory Form Downloads</h3>
+                    <p style="color: var(--color-text-body); margin-bottom: 24px; font-size: 0.95rem; line-height: 1.6;">Follow these quick steps to submit your compliance onboarding requirements:</p>
+                    
+                    <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 16px; margin-bottom: 30px;">
+                        <li style="display: flex; gap: 16px; align-items: flex-start;">
+                            <div style="width: 28px; height: 28px; background: var(--color-accent-light); color: var(--color-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; font-size: 0.85rem;">1</div>
+                            <div>
+                                <h4 style="font-size: 1rem; color: var(--color-text-dark); margin-bottom: 4px;">Choose and Download</h4>
+                                <p style="font-size: 0.85rem; color: var(--color-text-body); line-height: 1.5;">Select a statutory onboarding form from the list and download the template structure.</p>
+                            </div>
+                        </li>
+                        <li style="display: flex; gap: 16px; align-items: flex-start;">
+                            <div style="width: 28px; height: 28px; background: var(--color-accent-light); color: var(--color-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; font-size: 0.85rem;">2</div>
+                            <div>
+                                <h4 style="font-size: 1rem; color: var(--color-text-dark); margin-bottom: 4px;">Print, Fill, and Sign</h4>
+                                <p style="font-size: 0.85rem; color: var(--color-text-body); line-height: 1.5;">Print the form, fill in the block letters, sign the declaration physically, and scan or photo it.</p>
+                            </div>
+                        </li>
+                        <li style="display: flex; gap: 16px; align-items: flex-start;">
+                            <div style="width: 28px; height: 28px; background: var(--color-accent-light); color: var(--color-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; font-size: 0.85rem;">3</div>
+                            <div>
+                                <h4 style="font-size: 1rem; color: var(--color-text-dark); margin-bottom: 4px;">Secure Upload</h4>
+                                <p style="font-size: 0.85rem; color: var(--color-text-body); line-height: 1.5;">Drop the signed copy in the portal to the right and click Submit to write to our secure vault.</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="glass-card" style="padding: 24px; border-left: 4px solid var(--color-accent-gold); background: var(--color-bg-white); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+                        <h4 style="color: var(--color-text-dark); margin-bottom: 8px; font-size: 1rem;"><i class="fa-solid fa-shield-halved" style="color: var(--color-accent-gold); margin-right: 8px;"></i> Secure Verification</h4>
+                        <p style="font-size: 0.85rem; color: var(--color-text-body); line-height: 1.6; margin: 0;">Files are saved in a highly encrypted, write-only Google Workspace storage. Our compliance auditors will review submissions within 24 hours.</p>
+                    </div>
+                </div>
+
+                <!-- Secure Upload Form Right Column -->
+                <div class="contact-form-container glass-card" style="background: var(--color-bg-white); padding: 40px; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);">
+                    <h3 style="margin-bottom: 24px; font-size: 1.4rem; color: var(--color-text-dark); text-align: center;"><i class="fa-solid fa-cloud-arrow-up" style="color: var(--color-accent); margin-right: 10px;"></i> Onboarding Upload Portal</h3>
+                    
+                    <form id="docUploadForm" onsubmit="submitOnboardingDocument(event);">
+                        <div class="form-group" style="margin-bottom: 18px;">
+                            <label style="font-size: 0.9rem; margin-bottom: 6px; font-weight: 600; display: block;" for="docSelectTemplate">1. Select Statutory Document *</label>
+                            <select id="docSelectTemplate" required style="width: 100%; font-size: 0.95rem; padding: 10px 14px;">
+                                <option value="" disabled selected>-- Choose Document Template --</option>
+                                <option value="esi_form_1">ESI Form 1 Declaration (Employees' State Insurance)</option>
+                                <option value="epf_form_11">EPF Form 11 Declaration (Provident Fund)</option>
+                                <option value="health_ins">Group Health Insurance Enrollment Form</option>
+                                <option value="hr_checklist">New Employee Onboarding & Compliance Checklist</option>
+                            </select>
+                            <button type="button" class="btn-cta" onclick="downloadFormTemplate();" style="width: 100%; margin-top: 10px; padding: 10px; justify-content: center; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 8px;"><i class="fa-solid fa-download"></i> Download Selected Template</button>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 18px; margin-top: 24px;">
+                            <label style="font-size: 0.9rem; margin-bottom: 6px; font-weight: 600; display: block;" for="docCompany">2. Business / Company Name *</label>
+                            <input type="text" id="docCompany" required placeholder="Enter Company Name" style="width: 100%; padding: 10px 14px;">
+                        </div>
+
+                        <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px;">
+                            <div class="form-group">
+                                <label style="font-size: 0.9rem; margin-bottom: 6px; font-weight: 600; display: block;" for="docContactName">Your Name *</label>
+                                <input type="text" id="docContactName" required placeholder="Full Name" style="width: 100%; padding: 10px 14px;">
+                            </div>
+                            <div class="form-group">
+                                <label style="font-size: 0.9rem; margin-bottom: 6px; font-weight: 600; display: block;" for="docEmail">Email Address *</label>
+                                <input type="email" id="docEmail" required placeholder="email@company.com" style="width: 100%; padding: 10px 14px;">
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 24px;">
+                            <label style="font-size: 0.9rem; margin-bottom: 8px; font-weight: 600; display: block;">3. Drag & Drop Signed Scan *</label>
+                            <div class="upload-zone" id="upload-zone" style="border: 2px dashed #cbd5e1; border-radius: 8px; padding: 30px; text-align: center; background: #f8fafc; cursor: pointer; transition: all 0.2s ease;">
+                                <i class="fa-solid fa-file-pdf" style="font-size: 2.2rem; color: #94a3b8; margin-bottom: 12px; display: block;"></i>
+                                <span style="font-size: 0.9rem; font-weight: 600; color: var(--color-text-dark); display: block;" id="upload-zone-text">Drag file here or click to browse</span>
+                                <span style="font-size: 0.75rem; color: var(--color-text-body); display: block; margin-top: 4px;">Supports PDF, DOCX, or Images (Max 5MB)</span>
+                                <input type="file" id="docFileInput" required style="display: none;" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-cta" style="width: 100%; justify-content: center; font-size: 1rem; padding: 12px;"><i class="fa-solid fa-shield-halved"></i> Submit Document Securely</button>
+                    </form>
+
+                    <!-- Success Screen -->
+                    <div id="doc-upload-thank-you" style="display: none; text-align: center; padding: 20px 10px;">
+                        <div style="width: 60px; height: 60px; background: var(--color-accent-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto; color: var(--color-accent); font-size: 2.2rem;">
+                            <i class="fa-solid fa-circle-check" style="color: #10b981;"></i>
+                        </div>
+                        <h3 style="font-size: 1.6rem; margin-bottom: 8px; color: var(--color-text-dark);">Upload Successful!</h3>
+                        <p style="font-size: 0.95rem; color: var(--color-text-body); margin-bottom: 0;">Your file has been base64 encrypted and successfully uploaded. A receipt containing the Google Drive folder reference has been logged. Our compliance auditors will review the document details shortly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container footer-container">
@@ -924,6 +924,6 @@
     </footer>
 
     <!-- Custom Script -->
-    <script src="app.js?v=2.0.3"></script>
+    <script src="app.js?v=2.0.4"></script>
 </body>
 </html>
