@@ -1715,3 +1715,150 @@ select option {
         gap: 40px !important;
     }
 }
+
+/* ==========================================================================
+   TEAM & ADVISORY PANEL SECTION STYLE UTILITIES
+   ========================================================================== */
+.team-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.team-card {
+    background: var(--color-bg-white);
+    border: var(--border-light);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-accent-light);
+}
+
+.team-photo-container {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background: var(--color-bg-light);
+    position: relative;
+}
+
+.team-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.5s ease;
+}
+
+.team-card:hover .team-photo {
+    transform: scale(1.05);
+}
+
+.team-info {
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    margin-bottom: 4px;
+}
+
+.team-role {
+    font-size: 0.85rem;
+    color: var(--color-accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.team-expand-btn {
+    background: var(--color-bg-light);
+    border: var(--border-light);
+    color: var(--color-text-body);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.team-expand-btn:hover {
+    background: var(--color-accent);
+    color: var(--color-bg-white);
+    border-color: var(--color-accent);
+}
+
+.team-expand-btn.active {
+    background: var(--color-accent-gold);
+    color: var(--color-text-dark);
+    border-color: var(--color-accent-gold);
+}
+
+.team-expand-btn i {
+    transition: transform 0.3s ease;
+    font-size: 0.85rem;
+}
+
+.team-expand-btn.active i {
+    transform: rotate(180deg);
+}
+
+.team-desc-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--color-bg-light);
+    border-top: 0 solid var(--border-light);
+}
+
+.team-card.active .team-desc-panel {
+    border-top-width: 1px;
+}
+
+.team-desc-inner {
+    padding: 20px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--color-text-body);
+    text-align: left;
+}
+
+@media (max-width: 1024px) {
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .team-photo-container {
+        height: 280px;
+    }
+}

@@ -12,7 +12,7 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="index.css?v=2.0.1">
+    <link rel="stylesheet" href="index.css?v=2.0.2">
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -111,6 +111,191 @@
                     <div class="about-image-caption">
                         <i class="fa-solid fa-users-gear"></i>
                         <span>Empowering your business workforce with certified HR expertise and compliance protection.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team-section" style="padding: 100px 0; background: var(--color-bg-white); border-bottom: var(--border-light);">
+        <div class="container">
+            <div class="section-header text-center" style="margin-bottom: 60px;">
+                <span class="badge" style="background-color: rgba(30, 58, 138, 0.05); color: var(--color-accent); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; padding: 6px 16px; border-radius: var(--radius-sm); border: var(--border-accent);">Our Leadership & Board</span>
+                <h2 style="margin-top: 15px; font-size: 2.2rem; color: var(--color-text-dark);">Meet Our Team</h2>
+                <p style="max-width: 600px; margin: 15px auto 0 auto; color: var(--color-text-body); line-height: 1.6;">The experienced professionals building our compliance platform and our expert advisory panel.</p>
+            </div>
+
+            <!-- Group 1: Core Leadership Team -->
+            <div class="team-group-wrapper" style="margin-bottom: 70px;">
+                <div style="text-align: center; margin-bottom: 40px;">
+                    <h3 class="team-group-title" style="display: inline-block; font-size: 1.5rem; color: var(--color-text-dark); position: relative; padding-bottom: 8px;">
+                        People Building the Company
+                        <span style="position: absolute; bottom: 0; left: 25%; width: 50%; height: 3px; background: var(--color-accent); border-radius: 2px;"></span>
+                    </h3>
+                </div>
+                <div class="team-grid">
+                    <!-- Team Member 1 -->
+                    <div class="team-card">
+                        <div class="team-photo-container">
+                            <img src="assets/team/core_member1.jpg" alt="Core Member 1" class="team-photo" onerror="this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400'">
+                        </div>
+                        <div class="team-info">
+                            <h4 class="team-name">Core Member 1 Name</h4>
+                            <p class="team-role">Role/Designation (Core)</p>
+                            <button class="team-expand-btn" onclick="toggleTeamDescription(this)" aria-label="Toggle Description">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <div class="team-desc-panel">
+                            <div class="team-desc-inner">
+                                <p>Write the professional description and experience details of Core Member 1 here. This text will slide down smoothly when the arrow is clicked. You can edit this copy directly in index.html.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 2 -->
+                    <div class="team-card">
+                        <div class="team-photo-container">
+                            <img src="assets/team/core_member2.jpg" alt="Core Member 2" class="team-photo" onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400'">
+                        </div>
+                        <div class="team-info">
+                            <h4 class="team-name">Core Member 2 Name</h4>
+                            <p class="team-role">Role/Designation (Core)</p>
+                            <button class="team-expand-btn" onclick="toggleTeamDescription(this)" aria-label="Toggle Description">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <div class="team-desc-panel">
+                            <div class="team-desc-inner">
+                                <p>Write the professional description and experience details of Core Member 2 here. This text will slide down smoothly when the arrow is clicked. You can edit this copy directly in index.html.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 3 -->
+                    <div class="team-card">
+                        <div class="team-photo-container">
+                            <img src="assets/team/core_member3.jpg" alt="Core Member 3" class="team-photo" onerror="this.src='https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400'">
+                        </div>
+                        <div class="team-info">
+                            <h4 class="team-name">Core Member 3 Name</h4>
+                            <p class="team-role">Role/Designation (Core)</p>
+                            <button class="team-expand-btn" onclick="toggleTeamDescription(this)" aria-label="Toggle Description">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <div class="team-desc-panel">
+                            <div class="team-desc-inner">
+                                <p>Write the professional description and experience details of Core Member 3 here. This text will slide down smoothly when the arrow is clicked. You can edit this copy directly in index.html.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 4 -->
+                    <div class="team-card">
+                        <div class="team-photo-container">
+                            <img src="assets/team/core_member4.jpg" alt="Core Member 4" class="team-photo" onerror="this.src='https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400'">
+                        </div>
+                        <div class="team-info">
+                            <h4 class="team-name">Core Member 4 Name</h4>
+                            <p class="team-role">Role/Designation (Core)</p>
+                            <button class="team-expand-btn" onclick="toggleTeamDescription(this)" aria-label="Toggle Description">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <div class="team-desc-panel">
+                            <div class="team-desc-inner">
+                                <p>Write the professional description and experience details of Core Member 4 here. This text will slide down smoothly when the arrow is clicked. You can edit this copy directly in index.html.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group 2: Advisory Panel -->
+            <div class="team-group-wrapper">
+                <div style="text-align: center; margin-bottom: 40px;">
+                    <h3 class="team-group-title" style="display: inline-block; font-size: 1.5rem; color: var(--color-text-dark); position: relative; padding-bottom: 8px;">
+                        Advisory Panel
+                        <span style="position: absolute; bottom: 0; left: 25%; width: 50%; height: 3px; background: var(--color-accent); border-radius: 2px;"></span>
+                    </h3>
+                </div>
+                <div class="team-grid">
+                    <!-- Team Member 5 (Advisory 1) -->
+                    <div class="team-card">
+                        <div class="team-photo-container">
+                            <img src="assets/team/advisor_member1.jpg" alt="Advisor 1" class="team-photo" onerror="this.src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400'">
+                        </div>
+                        <div class="team-info">
+                            <h4 class="team-name">Advisor 1 Name</h4>
+                            <p class="team-role">Role/Designation (Advisor)</p>
+                            <button class="team-expand-btn" onclick="toggleTeamDescription(this)" aria-label="Toggle Description">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <div class="team-desc-panel">
+                            <div class="team-desc-inner">
+                                <p>Write the professional background, board position, and advisory contributions of Advisor 1 here. This text will expand smoothly when clicked. Edit directly in index.html.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 6 (Advisory 2) -->
+                    <div class="team-card">
+                        <div class="team-photo-container">
+                            <img src="assets/team/advisor_member2.jpg" alt="Advisor 2" class="team-photo" onerror="this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400'">
+                        </div>
+                        <div class="team-info">
+                            <h4 class="team-name">Advisor 2 Name</h4>
+                            <p class="team-role">Role/Designation (Advisor)</p>
+                            <button class="team-expand-btn" onclick="toggleTeamDescription(this)" aria-label="Toggle Description">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <div class="team-desc-panel">
+                            <div class="team-desc-inner">
+                                <p>Write the professional background, board position, and advisory contributions of Advisor 2 here. This text will expand smoothly when clicked. Edit directly in index.html.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 7 (Advisory 3) -->
+                    <div class="team-card">
+                        <div class="team-photo-container">
+                            <img src="assets/team/advisor_member3.jpg" alt="Advisor 3" class="team-photo" onerror="this.src='https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400'">
+                        </div>
+                        <div class="team-info">
+                            <h4 class="team-name">Advisor 3 Name</h4>
+                            <p class="team-role">Role/Designation (Advisor)</p>
+                            <button class="team-expand-btn" onclick="toggleTeamDescription(this)" aria-label="Toggle Description">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <div class="team-desc-panel">
+                            <div class="team-desc-inner">
+                                <p>Write the professional background, board position, and advisory contributions of Advisor 3 here. This text will expand smoothly when clicked. Edit directly in index.html.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 8 (Advisory 4) -->
+                    <div class="team-card">
+                        <div class="team-photo-container">
+                            <img src="assets/team/advisor_member4.jpg" alt="Advisor 4" class="team-photo" onerror="this.src='https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&q=80&w=400'">
+                        </div>
+                        <div class="team-info">
+                            <h4 class="team-name">Advisor 4 Name</h4>
+                            <p class="team-role">Role/Designation (Advisor)</p>
+                            <button class="team-expand-btn" onclick="toggleTeamDescription(this)" aria-label="Toggle Description">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <div class="team-desc-panel">
+                            <div class="team-desc-inner">
+                                <p>Write the professional background, board position, and advisory contributions of Advisor 4 here. This text will expand smoothly when clicked. Edit directly in index.html.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -924,6 +1109,6 @@
     </footer>
 
     <!-- Custom Script -->
-    <script src="app.js?v=2.0.4"></script>
+    <script src="app.js?v=2.0.5"></script>
 </body>
 </html>

@@ -710,3 +710,35 @@ window.addEventListener('DOMContentLoaded', () => {
         }, false);
     }
 });
+
+// ==========================================================================
+// TEAM SECTION DESCRIPTION ACCORDION CONTROLLER
+// ==========================================================================
+window.toggleTeamDescription = (btn) => {
+    const card = btn.closest('.team-card');
+    if (!card) return;
+    const panel = card.querySelector('.team-desc-panel');
+    const isActive = card.classList.contains('active');
+
+    // Close all other expanded team cards in the grid for clean UX (accordion style)
+    const activeCards = document.querySelectorAll('.team-card.active');
+    activeCards.forEach(c => {
+        if (c !== card) {
+            c.classList.remove('active');
+            const otherBtn = c.querySelector('.team-expand-btn');
+            if (otherBtn) otherBtn.classList.remove('active');
+            const otherPanel = c.querySelector('.team-desc-panel');
+            if (otherPanel) otherPanel.style.maxHeight = '0px';
+        }
+    });
+
+    if (isActive) {
+        card.classList.remove('active');
+        btn.classList.remove('active');
+        if (panel) panel.style.maxHeight = '0px';
+    } else {
+        card.classList.add('active');
+        btn.classList.add('active');
+        if (panel) panel.style.maxHeight = panel.scrollHeight + 'px';
+    }
+};
