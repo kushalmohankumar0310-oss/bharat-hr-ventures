@@ -1677,6 +1677,82 @@ select option {
     box-shadow: 0 6px 20px rgba(180, 83, 9, 0.6);
 }
 
+/* Service Selection Grid for Survey */
+.survey-service-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.survey-service-card {
+    border: 1.5px solid #e2e8f0;
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    background: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+}
+
+.survey-service-card:hover {
+    border-color: var(--color-accent-light);
+    background: #f8fafc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.survey-service-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.survey-service-card .service-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(30, 58, 138, 0.08);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.survey-service-card .service-info h5 {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--color-text-dark);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.survey-service-card.selected,
+.survey-service-card:has(input[type="radio"]:checked) {
+    border-color: var(--color-accent);
+    background: rgba(30, 58, 138, 0.04);
+    box-shadow: 0 0 0 1px var(--color-accent);
+}
+
+.survey-service-card.selected .service-icon,
+.survey-service-card:has(input[type="radio"]:checked) .service-icon {
+    background: var(--color-accent);
+    color: #ffffff;
+}
+
+@media (max-width: 600px) {
+    .survey-service-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}
+
 /* ==========================================================================
    ONBOARDING & DOCUMENT CENTER STYLE UTILITIES
    ========================================================================== */

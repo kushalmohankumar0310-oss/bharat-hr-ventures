@@ -380,36 +380,237 @@ document.addEventListener('DOMContentLoaded', () => {
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyEiythMKIfSxGLYbQJnEHsVCSH2GC4Bmu_KzUVlQ--o79ccbkVd04yV_RzCcUfiKTv/exec";
 
 // ==========================================================================
-// HOME EMBEDDED SURVEY CONTROLLER
+// 8-SERVICE SURVEY QUESTION BANK & DYNAMIC ENGINE
 // ==========================================================================
+const SERVICES_SURVEY_DATA = {
+    "esi-compliance": {
+        title: "ESI Compliance & Management",
+        subtitle: "Employee State Insurance statutory filings, registrations & dispute handling",
+        icon: "fa-certificate",
+        questions: [
+            { id: "q1", text: "1. What is your company's current total workforce size? *", type: "single", options: ["Under 20 employees", "20–50 employees", "51–200 employees", "200+ employees"] },
+            { id: "q2", text: "2. How many employees earn a gross monthly wage of ₹21,000 or less? *", type: "single", options: ["None", "1 – 10", "11 – 50", "50+"] },
+            { id: "q3", text: "3. Do you already have an active ESI Registration Code? *", type: "single", options: ["Yes, active", "No, need new registration", "Inactive / Needs recovery"] },
+            { id: "q4", text: "4. What core support do you need right now? (Select all that apply) *", type: "multi", options: ["New registration", "Monthly return filings", "Employee ID cards & registration", "Claim facilitation & dispute support"] },
+            { id: "q5", text: "5. Are there any pending ESI notices or past non-compliance issues? *", type: "single", options: ["Yes", "No", "Unsure / Need audit"] },
+            { id: "q6", text: "6. How often do you issue employee salary payouts? *", type: "single", options: ["Monthly (Fixed date)", "Bi-weekly / Weekly", "Daily / Contractual basis"] },
+            { id: "q7", text: "7. Preferred mode of data sharing for monthly filings: *", type: "single", options: ["Excel / CSV uploads", "HRMS / Payroll Software Integration", "Manual documentation"] }
+        ]
+    },
+    "pf-compliance": {
+        title: "PF (Provident Fund) Compliance & Management",
+        subtitle: "EPFO compliance, ECR filings, UAN management & audit resolution",
+        icon: "fa-piggy-bank",
+        questions: [
+            { id: "q1", text: "1. What is your workforce structure? *", type: "single", options: ["Mostly Permanent / Full-time", "Mostly Contract / Temporary", "Mixed (Permanent + Contract)"] },
+            { id: "q2", text: "2. Do you already have an EPFO Establishment Code? *", type: "single", options: ["Yes", "No, need fresh registration"] },
+            { id: "q3", text: "3. Are your past monthly PF filings (ECR) up to date? *", type: "single", options: ["Up to date", "Pending filings / Arrears", "Unsure"] },
+            { id: "q4", text: "4. Which services do you require? (Select all that apply) *", type: "multi", options: ["Monthly ECR generation & filing", "New employee UAN generation", "Employee PF withdrawal/transfer assistance", "EPFO audit & notice support"] },
+            { id: "q5", text: "5. How many total employees are eligible for PF? *", type: "single", options: ["Under 20", "20 – 50", "51 – 200", "200+"] },
+            { id: "q6", text: "6. How do you manage PF currently? *", type: "single", options: ["In-house HR team", "External Consultant / Agency", "Starting for the first time"] },
+            { id: "q7", text: "7. How will salary registers be provided each month? *", type: "single", options: ["Automated system access", "Shared Excel sheet by 1st–5th of every month", "Custom portal upload"] }
+        ]
+    },
+    "documentation-advisory": {
+        title: "End-to-End Documentation & Corporate Advisory",
+        subtitle: "Contracts, policy handbooks, background verification & legal protection",
+        icon: "fa-file-signature",
+        questions: [
+            { id: "q1", text: "1. What is your company's current stage? *", type: "single", options: ["Early-stage Startup", "Growing SME", "Established Enterprise"] },
+            { id: "q2", text: "2. Which documents do you need us to draft or update? (Select all that apply) *", type: "multi", options: ["Employment Contracts & NDAs", "Company Policy Manual (Leave, POSH, Conduct)", "Offer Letters & Termination Letters", "Statutory Compliance Registers"] },
+            { id: "q3", text: "3. Do you need Background Verification (BGV) services? *", type: "single", options: ["Yes, for all new hires", "Yes, for selective leadership roles only", "No, documentation only"] },
+            { id: "q4", text: "4. If BGV is required, which checks do you need? (Select all that apply) *", type: "multi", options: ["Employment & Education check", "Police Clearance & Criminal record check", "Health checkup & Vaccination verification", "Address verification"] },
+            { id: "q5", text: "5. Average monthly hiring volume requiring documentation: *", type: "single", options: ["1 – 5 per month", "6 – 20 per month", "20+ per month"] },
+            { id: "q6", text: "6. Are you currently facing any active employee legal grievances or statutory notices? *", type: "single", options: ["Yes", "No"] },
+            { id: "q7", text: "7. What is your target timeline for completion? *", type: "single", options: ["Urgent (Within 1 week)", "Standard (2–3 weeks)", "Flexible"] }
+        ]
+    },
+    "insurance-schemes": {
+        title: "Government-Backed Health & Life Insurance Integration",
+        subtitle: "Ayushman Bharat, PMJJBY, PMSBY and cashless claim facilitation",
+        icon: "fa-shield-heart",
+        questions: [
+            { id: "q1", text: "1. Which government schemes do you wish to integrate? (Select all that apply) *", type: "multi", options: ["Ayushman Bharat (AB-PMJAY) - Health Cover", "PMJJBY - Life Insurance", "PMSBY - Accident Insurance", "Need recommendation"] },
+            { id: "q2", text: "2. Estimated number of employees to enroll: *", type: "single", options: ["1 – 25", "26 – 100", "100+"] },
+            { id: "q3", text: "3. Do all eligible employees have bank accounts and Aadhaar linked? *", type: "single", options: ["Yes, 100%", "Mostly (70%–90%)", "No / Need assistance"] },
+            { id: "q4", text: "4. Who will fund the scheme premiums? *", type: "single", options: ["Fully paid by company", "Deducted via payroll (Employee funded)", "Co-funded model"] },
+            { id: "q5", text: "5. Do you also have an existing private Group Medical Insurance policy? *", type: "single", options: ["Yes", "No, replacing with government schemes", "No, want to offer both"] },
+            { id: "q6", text: "6. Do you require dedicated claims support for employees during emergencies? *", type: "single", options: ["Yes, full assistance", "Basic guidance only"] },
+            { id: "q7", text: "7. Preferred launch timeline: *", type: "single", options: ["Immediate / Next payroll cycle", "Within 30 days", "Exploring for future planning"] }
+        ]
+    },
+    "talent-advisory": {
+        title: "Executive Recruitment & Talent Advisory",
+        subtitle: "Executive search, leadership hiring, compensation benchmarking & onboarding",
+        icon: "fa-user-tie",
+        questions: [
+            { id: "q1", text: "1. What level of positions are you looking to fill? (Select all that apply) *", type: "multi", options: ["C-Suite (CEO, CTO, CFO, etc.)", "VP / Director level", "Senior Managerial / Lead positions"] },
+            { id: "q2", text: "2. How many active open positions do you have right now? *", type: "single", options: ["1 – 2 roles", "3 – 5 roles", "5+ roles"] },
+            { id: "q3", text: "3. Work arrangement for these roles: *", type: "single", options: ["On-site", "Hybrid", "Remote"] },
+            { id: "q4", text: "4. Target hiring timeline: *", type: "single", options: ["Immediate (Within 15–30 days)", "Standard (30–60 days)", "Leadership search (60–90 days)"] },
+            { id: "q5", text: "5. Do you require additional talent services? (Select all that apply) *", type: "multi", options: ["Salary & Compensation Benchmarking", "Executive Background Verification", "International Visa / Passport Assistance"] },
+            { id: "q6", text: "6. Number of internal interview rounds planned: *", type: "single", options: ["1 – 2 rounds", "3 – 4 rounds", "5+ rounds"] },
+            { id: "q7", text: "7. How would you describe your company's pitch for candidates? *", type: "single", options: ["High-growth startup / Equity upside", "Established corporate / Stability & benefits", "Niche industry leader"] }
+        ]
+    },
+    "payroll-admin": {
+        title: "Payroll & HR Administration",
+        subtitle: "End-to-end payroll processing, tax deductions, attendance & employee helpdesk",
+        icon: "fa-calculator",
+        questions: [
+            { id: "q1", text: "1. Total current employee headcount: *", type: "single", options: ["Under 20", "20 – 100", "100 – 500", "500+"] },
+            { id: "q2", text: "2. How is attendance tracked currently? *", type: "single", options: ["Biometric machine / Face recognition", "Web portal / Mobile app", "Manual register / Excel sheet"] },
+            { id: "q3", text: "3. Standard monthly salary payout date: *", type: "single", options: ["Last day of the month", "1st – 5th of the month", "7th – 10th of the month"] },
+            { id: "q4", text: "4. Do you require us to use your existing HRMS software or our platform? *", type: "single", options: ["Use our existing HR software", "Use Bharat HR Ventures platform/system", "No preference"] },
+            { id: "q5", text: "5. What extra modules do you need included? (Select all that apply) *", type: "multi", options: ["TDS / Form 16 management", "Professional Tax (PT) filings", "Leave & Attendance management", "Employee Helpdesk for payslip queries"] },
+            { id: "q6", text: "6. Salary structure complexity: *", type: "single", options: ["Simple (Fixed Base + Allowance)", "Complex (Variables, Incentives, Overtime, Shift allowances)"] },
+            { id: "q7", text: "7. Primary reason for outsourcing payroll: *", type: "single", options: ["Time savings / Focus on core business", "Ensuring 100% statutory accuracy", "Employee size growing rapidly"] }
+        ]
+    },
+    "hr-audit": {
+        title: "Comprehensive HR Audit & Statutory Check",
+        subtitle: "Labor law audit, register inspection, notice risk identification & POSH reviews",
+        icon: "fa-magnifying-glass-chart",
+        questions: [
+            { id: "q1", text: "1. When was your last formal HR & Labor Law audit conducted? *", type: "single", options: ["Within the last 12 months", "1 – 3 years ago", "Never / First time"] },
+            { id: "q2", text: "2. How many operating locations/branches does your company have in India? *", type: "single", options: ["Single location", "2 – 5 locations", "5+ locations across multiple states"] },
+            { id: "q3", text: "3. Breakdown of your current workforce: *", type: "single", options: ["Mostly permanent employees", "Significant third-party / Contract labor", "Equal mix of both"] },
+            { id: "q4", text: "4. Have you received any labor inspection notices or penalties in the past 24 months? *", type: "single", options: ["Yes", "No", "Unsure"] },
+            { id: "q5", text: "5. Which areas do you feel are most at risk? (Select all that apply) *", type: "multi", options: ["Wage registers & Overtime logs", "ESI / PF compliance gaps", "Contract labor compliance", "POSH & Factory/Establishments Act rules"] },
+            { id: "q6", text: "6. What is your primary goal for this audit? *", type: "single", options: ["Preparation for investor funding / M&A", "Annual routine compliance check", "Resolving ongoing legal/statutory issues"] },
+            { id: "q7", text: "7. Desired audit completion timeframe: *", type: "single", options: ["Fast-track (Within 10 days)", "Standard (2–3 weeks)"] }
+        ]
+    },
+    "corporate-travel": {
+        title: "Corporate Travel & Leisure Management",
+        subtitle: "Corporate retreats, team outings, executive transport & offsite events",
+        icon: "fa-plane-departure",
+        questions: [
+            { id: "q1", text: "1. What type of event/travel are you planning? *", type: "single", options: ["Single-day Team Outing / Dinner", "Overnight / Weekend Retreat", "Corporate Conference / Milestone Event", "Regular Business Travel Management"] },
+            { id: "q2", text: "2. Expected number of attendees: *", type: "single", options: ["Small Team (10 – 25 people)", "Mid-size (26 – 100 people)", "Large (100+ people)"] },
+            { id: "q3", text: "3. Who will be attending? *", type: "single", options: ["Employees only", "Leadership team only", "Employees + Family/Dependents"] },
+            { id: "q4", text: "4. Budget tier per head: *", type: "single", options: ["Economy / Budget-friendly", "Premium / Standard", "Luxury / High-end"] },
+            { id: "q5", text: "5. Which services do you need us to handle? (Select all that apply) *", type: "multi", options: ["Flight / Train / Bus transport", "Hotel accommodation & venue booking", "Food, Beverages & Gala Dinners", "Team building games & activities"] },
+            { id: "q6", text: "6. Preferred travel distance / location type: *", type: "single", options: ["Within the city / Local resort", "Driving distance (Outstation)", "Outstation flight travel / Destination trip"] },
+            { id: "q7", text: "7. Target timeline / date of the event: *", type: "single", options: ["Within 2 weeks", "Next month", "2–3 months away"] }
+        ]
+    }
+};
+
+let currentSelectedService = "esi-compliance";
+
+function generateQuestionHTML(q, stepNum) {
+    const isMulti = q.type === "multi";
+    const inputType = isMulti ? "checkbox" : "radio";
+    const inputName = `dynamic_${q.id}`;
+    
+    let optionsHTML = q.options.map(opt => {
+        return `
+            <label class="survey-radio-label" style="padding: 10px 14px; gap: 10px; font-size: 0.9rem;">
+                <input type="${inputType}" name="${inputName}" value="${opt.replace(/"/g, '&quot;')}" ${!isMulti ? 'required' : ''}>
+                <span>${opt}</span>
+            </label>
+        `;
+    }).join("");
+
+    return `
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label style="font-size: 0.95rem; margin-bottom: 8px; font-weight: 600; display: block; color: var(--color-text-dark);">${q.text}</label>
+            <div class="survey-radio-group">
+                ${optionsHTML}
+            </div>
+        </div>
+    `;
+}
+
+function renderServiceQuestions(serviceKey) {
+    const data = SERVICES_SURVEY_DATA[serviceKey];
+    if (!data) return;
+    
+    currentSelectedService = serviceKey;
+
+    const step2Container = document.getElementById('home-step-2-container');
+    const step3Container = document.getElementById('home-step-3-container');
+
+    const serviceBadge = `
+        <div style="margin-bottom: 18px; padding: 8px 14px; background: rgba(30, 58, 138, 0.06); border-radius: 6px; border-left: 3px solid var(--color-accent); display: flex; align-items: center; gap: 10px;">
+            <i class="fa-solid ${data.icon}" style="color: var(--color-accent);"></i>
+            <div>
+                <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--color-accent); display: block; letter-spacing: 0.5px;">Selected Service Assessment</span>
+                <strong style="font-size: 0.92rem; color: var(--color-text-dark);">${data.title}</strong>
+            </div>
+        </div>
+    `;
+
+    if (step2Container) {
+        // Questions 1, 2, 3
+        const q1to3 = data.questions.slice(0, 3).map(q => generateQuestionHTML(q, 2)).join("");
+        step2Container.innerHTML = serviceBadge + q1to3;
+    }
+
+    if (step3Container) {
+        // Questions 4, 5, 6, 7
+        const q4to7 = data.questions.slice(3, 7).map(q => generateQuestionHTML(q, 3)).join("");
+        step3Container.innerHTML = serviceBadge + q4to7;
+    }
+}
+
+window.selectServiceCard = (cardEl, serviceKey) => {
+    document.querySelectorAll('.survey-service-card').forEach(c => c.classList.remove('selected'));
+    cardEl.classList.add('selected');
+    const radio = cardEl.querySelector('input[type="radio"]');
+    if (radio) {
+        radio.checked = true;
+    }
+};
+
 window.nextHomeStep = (stepNumber) => {
     const currentStepEl = document.querySelector('.home-survey-step.active-step');
     if (!currentStepEl) return;
 
     let isValid = true;
 
-    // Check validation based on which step we are LEAVING (stepNumber is the step we are ENTERING)
+    // Check validation based on which step we are LEAVING
     if (stepNumber === 2) {
-        // Leaving Step 1. Check Q1 (Radio) and Q2 (Checkbox)
-        const q1Checked = currentStepEl.querySelector('input[name="homeQ1Importance"]:checked');
-        const q2Checked = currentStepEl.querySelectorAll('input[name="homeBenefitsOffer"]:checked');
-        if (!q1Checked || q2Checked.length === 0) isValid = false;
+        // Leaving Step 1 (Service Selection)
+        const checkedService = document.querySelector('input[name="selectedService"]:checked');
+        if (!checkedService) {
+            alert('Please select a service option to proceed with the assessment.');
+            return;
+        }
+        renderServiceQuestions(checkedService.value);
     } else if (stepNumber === 3) {
-        // Leaving Step 2. Check Q3, Q4, Q5 (all Radios)
-        const q3Checked = currentStepEl.querySelector('input[name="homeQ3Reason"]:checked');
-        const q4Checked = currentStepEl.querySelector('input[name="homeQ4Satisfaction"]:checked');
-        const q5Checked = currentStepEl.querySelector('input[name="homeQ5Productivity"]:checked');
-        if (!q3Checked || !q4Checked || !q5Checked) isValid = false;
+        // Leaving Step 2 (Q1, Q2, Q3)
+        const currentData = SERVICES_SURVEY_DATA[currentSelectedService];
+        const step2Questions = currentData.questions.slice(0, 3);
+        
+        for (const q of step2Questions) {
+            const checked = currentStepEl.querySelectorAll(`input[name="dynamic_${q.id}"]:checked`);
+            if (checked.length === 0) {
+                isValid = false;
+                break;
+            }
+        }
+        if (!isValid) {
+            alert('Please answer all questions on this step before proceeding.');
+            return;
+        }
     } else if (stepNumber === 4) {
-        // Leaving Step 3. Check Q6 (Checkbox) and Q7 (Radio)
-        const q6Checked = currentStepEl.querySelectorAll('input[name="homeChallenges"]:checked');
-        const q7Checked = currentStepEl.querySelector('input[name="homeQ7Expansion"]:checked');
-        if (q6Checked.length === 0 || !q7Checked) isValid = false;
-    }
-
-    if (!isValid) {
-        alert('Please answer all questions on this step before proceeding.');
-        return;
+        // Leaving Step 3 (Q4, Q5, Q6, Q7)
+        const currentData = SERVICES_SURVEY_DATA[currentSelectedService];
+        const step3Questions = currentData.questions.slice(3, 7);
+        
+        for (const q of step3Questions) {
+            const checked = currentStepEl.querySelectorAll(`input[name="dynamic_${q.id}"]:checked`);
+            if (checked.length === 0) {
+                isValid = false;
+                break;
+            }
+        }
+        if (!isValid) {
+            alert('Please answer all questions on this step before proceeding.');
+            return;
+        }
     }
 
     // Hide all steps
@@ -434,20 +635,17 @@ window.nextHomeStep = (stepNumber) => {
 };
 
 window.prevHomeStep = (stepNumber) => {
-    // Hide all steps
     document.querySelectorAll('.home-survey-step').forEach(step => {
         step.style.display = 'none';
         step.classList.remove('active-step');
     });
 
-    // Show targeted step
     const targetStepEl = document.getElementById(`home-step-${stepNumber}`);
     if (targetStepEl) {
         targetStepEl.style.display = 'block';
         targetStepEl.classList.add('active-step');
     }
 
-    // Update progress bar UI
     const percent = (stepNumber / 4) * 100;
     const progressText = document.getElementById('survey-progress-text');
     const progressBar = document.getElementById('survey-progress-bar');
@@ -461,15 +659,14 @@ window.submitHomeSurvey = (event) => {
     // Verify fields
     const company = document.getElementById('homeCompanyName').value;
     const name = document.getElementById('homeContactName').value;
-    const email = document.getElementById('homeContactEmail').value;
+    const email = document.getElementById('homeContactEmail') ? document.getElementById('homeContactEmail').value : "";
     const phoneCode = document.getElementById('homeCountryCode').value;
     const phoneNum = document.getElementById('homePhone').value;
-    const serviceRequired = document.getElementById('homeServiceRequired').value;
     const messageText = document.getElementById('homeMessage').value;
 
     // Validate phone number digits length dynamically
     const phoneInput = document.getElementById('homePhone');
-    const phoneNumClean = phoneNum.replace(/\D/g, ""); // Strip non-digits
+    const phoneNumClean = phoneNum.replace(/\D/g, "");
     const selectEl = document.getElementById('homeCountryCode');
     const selectedOption = selectEl.options[selectEl.selectedIndex];
     const expectedDigits = parseInt(selectedOption.getAttribute('data-digits')) || 10;
@@ -482,48 +679,44 @@ window.submitHomeSurvey = (event) => {
         phoneInput.setCustomValidity("");
     }
 
-    // Check answers for personalized feedback
-    const offersNone = document.querySelector('input[name="homeBenefitsOffer"][value="none"]:checked');
-    const hasChallenges = document.querySelector('input[name="homeChallenges"][value="complex-regulations"]:checked') ||
-                          document.querySelector('input[name="homeChallenges"][value="admin-burden"]:checked');
-    const plansExpand = document.querySelector('input[name="homeQ7Expansion"][value="yes-definitely"]:checked');
+    const currentData = SERVICES_SURVEY_DATA[currentSelectedService] || SERVICES_SURVEY_DATA["esi-compliance"];
+    
+    // Extract dynamic answers
+    const getAnswer = (qId) => {
+        const checkedList = Array.from(document.querySelectorAll(`input[name="dynamic_${qId}"]:checked`));
+        return checkedList.map(el => el.value).join(", ");
+    };
 
-    let riskMessage = "";
-    if (offersNone) {
-        riskMessage = "IMMEDIATE ADVISORY RECOMMENDED: Operating without ESI, EPF, or group insurance benefits exposes your business to audits and penalties under labor policies once statutory employee thresholds are met. Bharat HR Ventures will contact you immediately to map out a secure compliance setup.";
-    } else if (hasChallenges) {
-        riskMessage = "OPTIMIZATION PROFILE: Navigating complex regulations and high administrative burdens is a common roadblock. We specialize in complete statutory takeover (filing, returns, and dispute resolution), reducing your operational overhead by up to 90%.";
-    } else if (plansExpand) {
-        riskMessage = "EXPANSION AUDIT ESTIMATE: Since you plan to expand benefits in the next year, we will help you deploy ESI/EPF structures, coordinate cashless group insurance products, and ensure all filings are aligned with statutory requirements.";
-    } else {
-        riskMessage = "COMPLIANCE SCORE: Your baseline registrations appear active. We will connect with you to review your monthly returns and audit your files for operational and statutory efficiency.";
-    }
+    const q1Ans = getAnswer("q1");
+    const q2Ans = getAnswer("q2");
+    const q3Ans = getAnswer("q3");
+    const q4Ans = getAnswer("q4");
+    const q5Ans = getAnswer("q5");
+    const q6Ans = getAnswer("q6");
+    const q7Ans = getAnswer("q7");
 
-    // Compile survey data for submission
+    // Dynamic tailored feedback based on selected service
+    let riskMessage = `ASSESSMENT COMPLETE: We have logged your assessment for ${currentData.title}. Our statutory specialists will review your requirements and connect with your team to provide a customized roadmap and compliance protection plan.`;
+
+    // Compile survey payload for Google Sheet
     const formData = {
         timestamp: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
         companyName: company,
         contactName: name,
-        emailAddress: email,
+        emailAddress: email || "Not Provided",
         phoneNumber: `${phoneCode} ${phoneNum}`,
-        serviceRequired: serviceRequired,
+        serviceRequired: currentData.title,
         message: messageText,
-        q1Importance: document.querySelector('input[name="homeQ1Importance"]:checked')?.value || "",
-        q2Benefits: Array.from(document.querySelectorAll('input[name="homeBenefitsOffer"]:checked')).map(el => {
-            const spanText = el.closest('label').querySelector('span').innerText;
-            return spanText;
-        }).join(", "),
-        q3Reason: document.querySelector('input[name="homeQ3Reason"]:checked')?.closest('label').querySelector('span').innerText || "",
-        q4Satisfaction: document.querySelector('input[name="homeQ4Satisfaction"]:checked')?.closest('label').querySelector('span').innerText || "",
-        q5Productivity: document.querySelector('input[name="homeQ5Productivity"]:checked')?.closest('label').querySelector('span').innerText || "",
-        q6Challenges: Array.from(document.querySelectorAll('input[name="homeChallenges"]:checked')).map(el => {
-            const spanText = el.closest('label').querySelector('span').innerText;
-            return spanText;
-        }).join(", "),
-        q7Expansion: document.querySelector('input[name="homeQ7Expansion"]:checked')?.closest('label').querySelector('span').innerText || ""
+        q1Importance: q1Ans,
+        q2Benefits: q2Ans,
+        q3Reason: q3Ans,
+        q4Satisfaction: q4Ans,
+        q5Productivity: q5Ans,
+        q6Challenges: q6Ans,
+        q7Expansion: q7Ans
     };
 
-    // Post to Google Sheet Web App if URL is provided
+    // Post to Google Sheet Web App
     if (GOOGLE_SCRIPT_URL) {
         fetch(GOOGLE_SCRIPT_URL, {
             method: "POST",
@@ -541,7 +734,6 @@ window.submitHomeSurvey = (event) => {
     const feedbackEl = document.getElementById('home-assessment-feedback');
     if (feedbackEl) feedbackEl.innerText = riskMessage;
 
-    // Hide progress bar and form
     const progressContainer = document.querySelector('.survey-progress-container');
     const formEl = document.getElementById('homeSurveyForm');
     const thankYouEl = document.getElementById('home-thank-you');
