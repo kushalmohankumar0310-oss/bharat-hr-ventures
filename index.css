@@ -270,19 +270,42 @@ a.btn-secondary:hover, button.btn-secondary:hover, .btn-secondary:hover {
     display: flex;
     align-items: center;
     gap: 12px;
+    white-space: nowrap;
+    text-decoration: none;
 }
 
 .nav-logo {
-    height: 42px;
+    height: 48px;
     width: auto;
+    transition: height 0.3s ease;
+}
+
+.navbar.scrolled .nav-logo {
+    height: 40px;
 }
 
 .logo-text {
     font-family: var(--font-heading);
     font-weight: 800;
-    font-size: 1.3rem;
-    letter-spacing: 0.5px;
+    font-size: 1.25rem;
+    letter-spacing: 0.2px;
     color: var(--color-text-dark);
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+}
+
+.logo-corp {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-left: 1.5px solid #cbd5e1;
+    padding-left: 8px;
+    margin-left: 6px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .accent-text {
@@ -292,7 +315,7 @@ a.btn-secondary:hover, button.btn-secondary:hover, .btn-secondary:hover {
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 20px;
 }
 
 .nav-item {
@@ -301,6 +324,7 @@ a.btn-secondary:hover, button.btn-secondary:hover, .btn-secondary:hover {
     color: var(--color-text-muted);
     position: relative;
     padding: 6px 0;
+    white-space: nowrap;
 }
 
 .nav-item:hover, .nav-item.active {
@@ -1312,11 +1336,7 @@ select option {
     }
 }
 
-@media (max-width: 600px) {
-    html {
-        font-size: 14px;
-    }
-
+@media (max-width: 1024px) {
     .menu-toggle {
         display: block;
     }
@@ -1348,6 +1368,12 @@ select option {
     .header-cta {
         width: 100%;
         text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    html {
+        font-size: 14px;
     }
 
     .hero-content h1 {
