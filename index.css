@@ -1365,8 +1365,44 @@ select option {
         font-size: 14px;
     }
 
+    .nav-logo {
+        height: 38px !important;
+    }
+
+    .navbar.scrolled .nav-logo {
+        height: 34px !important;
+    }
+
+    .logo-text {
+        font-size: 1.1rem !important;
+    }
+    
+    .logo-container {
+        gap: 8px !important;
+    }
+
+    .alphabet-btn {
+        width: 44px !important;
+        height: 44px !important;
+        font-size: 1.25rem !important;
+    }
+
+    .contact-form-container {
+        padding: 20px !important;
+    }
+
+    .upload-zone {
+        padding: 20px !important;
+    }
+
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        line-height: 1.25;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 24px;
     }
     
     .hero-actions {
