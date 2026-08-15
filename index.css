@@ -276,19 +276,19 @@ a.btn-secondary:hover, button.btn-secondary:hover, .btn-secondary:hover {
 }
 
 .nav-logo {
-    height: 54px;
+    height: 64px;
     width: auto;
     transition: height 0.3s ease;
 }
 
 .navbar.scrolled .nav-logo {
-    height: 44px;
+    height: 52px;
 }
 
 .logo-text {
     font-family: var(--font-heading);
     font-weight: 800;
-    font-size: 1.45rem;
+    font-size: 1.6rem;
     letter-spacing: 0.2px;
     color: var(--color-text-dark);
     white-space: nowrap;
@@ -1381,15 +1381,15 @@ select option {
     }
 
     .nav-logo {
-        height: 38px !important;
+        height: 48px !important;
     }
 
     .navbar.scrolled .nav-logo {
-        height: 34px !important;
+        height: 42px !important;
     }
 
     .logo-text {
-        font-size: 1.1rem !important;
+        font-size: 1.22rem !important;
     }
     
     .logo-container {
