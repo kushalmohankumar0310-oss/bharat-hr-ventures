@@ -562,6 +562,28 @@ window.selectServiceCard = (cardEl, serviceKey) => {
     if (radio) {
         radio.checked = true;
     }
+    
+    // Render the questions for the selected service
+    renderServiceQuestions(serviceKey);
+    
+    // Instantly transition step to Step 2
+    document.querySelectorAll('.home-survey-step').forEach(step => {
+        step.style.display = 'none';
+        step.classList.remove('active-step');
+    });
+
+    const targetStepEl = document.getElementById('home-step-2');
+    if (targetStepEl) {
+        targetStepEl.style.display = 'block';
+        targetStepEl.classList.add('active-step');
+    }
+
+    // Update progress bar UI to Step 2 (50%)
+    const percent = 50;
+    const progressText = document.getElementById('survey-progress-text');
+    const progressBar = document.getElementById('survey-progress-bar');
+    if (progressText) progressText.innerText = 'Step 2 of 4';
+    if (progressBar) progressBar.style.width = `${percent}%`;
 };
 
 window.nextHomeStep = (stepNumber) => {
