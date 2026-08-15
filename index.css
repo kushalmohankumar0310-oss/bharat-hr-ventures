@@ -261,9 +261,10 @@ a.btn-secondary:hover, button.btn-secondary:hover, .btn-secondary:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 10px 24px;
+    width: 100%;
 }
 
 .logo-container {
@@ -275,37 +276,25 @@ a.btn-secondary:hover, button.btn-secondary:hover, .btn-secondary:hover {
 }
 
 .nav-logo {
-    height: 48px;
+    height: 54px;
     width: auto;
     transition: height 0.3s ease;
 }
 
 .navbar.scrolled .nav-logo {
-    height: 40px;
+    height: 44px;
 }
 
 .logo-text {
     font-family: var(--font-heading);
     font-weight: 800;
-    font-size: 1.25rem;
+    font-size: 1.45rem;
     letter-spacing: 0.2px;
     color: var(--color-text-dark);
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
-}
-
-.logo-corp {
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--color-text-muted);
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    border-left: 1.5px solid #cbd5e1;
-    padding-left: 8px;
-    margin-left: 6px;
-    display: inline-block;
-    vertical-align: middle;
+    gap: 6px;
 }
 
 .accent-text {
