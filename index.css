@@ -2290,3 +2290,34 @@ body.gateway-locked {
         height: 64px;
     }
 }
+
+/* Tab T Double Card Layout */
+.bharat-double-card {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    display: flex !important;
+    gap: 24px !important;
+    overflow: visible !important;
+    width: 100% !important;
+}
+
+.bharat-sub-card {
+    background: var(--color-bg-white);
+    border: var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 40px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+    flex: 1;
+    min-width: 0;
+}
+
+@media (max-width: 768px) {
+    .bharat-double-card {
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+}
