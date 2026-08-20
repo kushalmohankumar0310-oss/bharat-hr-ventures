@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================================================
     // DYNAMIC COMPREHENSIVE COUNTRY PHONE CODES POPULATION
     // ==========================================================================
-    const countryCodes = [
+    window.countryCodes = [
         { name: "Afghanistan", code: "+93" },
         { name: "Albania", code: "+355" },
         { name: "Algeria", code: "+213" },
@@ -346,7 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectEl = document.getElementById('homeCountryCode');
     if (selectEl) {
         selectEl.innerHTML = ''; // Clear default
-        countryCodes.forEach(item => {
+        window.countryCodes.forEach(item => {
             // Determine expected digits (defaults to 10 if not in list)
             let digits = 10;
             if (item.name === "Australia") digits = 9;
@@ -930,21 +930,19 @@ window.addEventListener('DOMContentLoaded', () => {
     const isAlreadyOnboarded = localStorage.getItem('bharat_hr_onboarded');
     const overlay = document.getElementById('gateway-overlay');
     
-    if (isAlreadyOnboarded === 'true') {
-        if (overlay) overlay.style.display = 'none';
-        document.body.classList.remove('gateway-locked');
-    } else {
-        if (overlay) overlay.style.display = 'flex';
-        document.body.classList.add('gateway-locked');
-        
-        // Populate Employee and Employer phone dropdowns
+    // Hide overlay initially to let user view homepage
+    if (overlay) overlay.style.display = 'none';
+    document.body.classList.remove('gateway-locked');
+    
+    if (isAlreadyOnboarded !== 'true') {
+        // Populate country code selectors immediately on load so they are ready
         const empSelect = document.getElementById('empCountryCode');
         const employerSelect = document.getElementById('employerCountryCode');
         
         const populateSelect = (selectEl) => {
             if (!selectEl) return;
             selectEl.innerHTML = '';
-            countryCodes.forEach(item => {
+            window.countryCodes.forEach(item => {
                 let digits = 10;
                 if (item.name === "Australia") digits = 9;
                 else if (item.name === "Singapore") digits = 8;
@@ -965,6 +963,36 @@ window.addEventListener('DOMContentLoaded', () => {
         
         populateSelect(empSelect);
         populateSelect(employerSelect);
+        
+        // Lazy-trigger listener: Scroll
+        let scrollTriggered = false;
+        const handleInitialScroll = () => {
+            if (scrollTriggered) return;
+            if (localStorage.getItem('bharat_hr_onboarded') === 'true') return;
+            
+            if (window.scrollY > 30) {
+                scrollTriggered = true;
+                window.triggerGatewayOverlay();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.removeEventListener('scroll', handleInitialScroll);
+            }
+        };
+        window.addEventListener('scroll', handleInitialScroll);
+        
+        // Lazy-trigger listener: Clicks (interceptor)
+        document.addEventListener('click', (e) => {
+            if (localStorage.getItem('bharat_hr_onboarded') === 'true') return;
+            
+            // Allow clicking elements inside the gateway overlay
+            if (e.target.closest('#gateway-overlay')) return;
+            
+            const interactive = e.target.closest('a, button, input, select, textarea');
+            if (interactive) {
+                e.preventDefault();
+                e.stopPropagation();
+                window.triggerGatewayOverlay();
+            }
+        }, true); // Use capture phase to intercept before actions trigger
     }
 });
 
@@ -1189,4 +1217,20 @@ window.submitGatewayForm = (event, role) => {
             document.body.classList.remove('gateway-locked');
         }
     }
+};
+
+// Global trigger to show the onboarding gateway overlay with smooth transitions
+window.triggerGatewayOverlay = () => {
+    const overlay = document.getElementById('gateway-overlay');
+    if (!overlay) return;
+    overlay.style.display = 'flex';
+    document.body.classList.add('gateway-locked');
+    
+    // Smooth transition trigger
+    overlay.style.opacity = '0';
+    overlay.style.transform = 'scale(0.98)';
+    overlay.offsetHeight; // force reflow
+    overlay.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+    overlay.style.opacity = '1';
+    overlay.style.transform = 'scale(1)';
 };
