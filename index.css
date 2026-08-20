@@ -276,13 +276,13 @@ a.btn-secondary:hover, button.btn-secondary:hover, .btn-secondary:hover {
 }
 
 .nav-logo {
-    height: 64px;
+    height: 80px;
     width: auto;
     transition: height 0.3s ease;
 }
 
 .navbar.scrolled .nav-logo {
-    height: 52px;
+    height: 64px;
 }
 
 .logo-text {
@@ -1381,11 +1381,11 @@ select option {
     }
 
     .nav-logo {
-        height: 48px !important;
+        height: 56px !important;
     }
 
     .navbar.scrolled .nav-logo {
-        height: 42px !important;
+        height: 48px !important;
     }
 
     .logo-text {
