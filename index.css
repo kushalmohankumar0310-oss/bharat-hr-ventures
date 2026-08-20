@@ -276,7 +276,7 @@ a.btn-secondary:hover, button.btn-secondary:hover, .btn-secondary:hover {
 }
 
 .nav-logo {
-    height: 140px;
+    height: 100px;
     width: auto;
     transition: height 0.3s ease;
 }
