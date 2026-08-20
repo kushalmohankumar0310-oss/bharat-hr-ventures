@@ -249,11 +249,11 @@ a.btn-secondary:hover, button.btn-secondary:hover, .btn-secondary:hover {
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid #e2e8f0;
     transition: var(--transition-smooth);
-    padding: 4px 0;
+    padding: 10px 0;
 }
 
 .navbar.scrolled {
-    padding: 2px 0;
+    padding: 6px 0;
     box-shadow: var(--shadow-md);
 }
 
@@ -263,7 +263,7 @@ a.btn-secondary:hover, button.btn-secondary:hover, .btn-secondary:hover {
     align-items: center;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 6px 24px;
+    padding: 8px 24px;
     width: 100%;
 }
 
@@ -276,19 +276,19 @@ a.btn-secondary:hover, button.btn-secondary:hover, .btn-secondary:hover {
 }
 
 .nav-logo {
-    height: 72px;
+    height: 108px;
     width: auto;
     transition: height 0.3s ease;
 }
 
 .navbar.scrolled .nav-logo {
-    height: 54px;
+    height: 84px;
 }
 
 .logo-text {
     font-family: var(--font-heading);
     font-weight: 800;
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     letter-spacing: 0.2px;
     color: var(--color-text-dark);
     white-space: nowrap;
@@ -1381,15 +1381,15 @@ select option {
     }
 
     .nav-logo {
-        height: 48px !important;
+        height: 72px !important;
     }
 
     .navbar.scrolled .nav-logo {
-        height: 38px !important;
+        height: 56px !important;
     }
 
     .logo-text {
-        font-size: 0.9rem !important;
+        font-size: 1.0rem !important;
     }
     
     .logo-container {
