@@ -923,6 +923,49 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }, false);
     }
+
+    // ==========================================================================
+    // INITIALIZE ONBOARDING GATEWAY
+    // ==========================================================================
+    const isAlreadyOnboarded = localStorage.getItem('bharat_hr_onboarded');
+    const overlay = document.getElementById('gateway-overlay');
+    
+    if (isAlreadyOnboarded === 'true') {
+        if (overlay) overlay.style.display = 'none';
+        document.body.classList.remove('gateway-locked');
+    } else {
+        if (overlay) overlay.style.display = 'flex';
+        document.body.classList.add('gateway-locked');
+        
+        // Populate Employee and Employer phone dropdowns
+        const empSelect = document.getElementById('empCountryCode');
+        const employerSelect = document.getElementById('employerCountryCode');
+        
+        const populateSelect = (selectEl) => {
+            if (!selectEl) return;
+            selectEl.innerHTML = '';
+            countryCodes.forEach(item => {
+                let digits = 10;
+                if (item.name === "Australia") digits = 9;
+                else if (item.name === "Singapore") digits = 8;
+                else if (item.name === "United Arab Emirates" || item.name === "Saudi Arabia") digits = 9;
+                else if (item.name === "China") digits = 11;
+                else if (item.name === "France" || item.name === "Italy" || item.name === "Spain") digits = 9;
+                
+                const option = document.createElement('option');
+                option.value = item.code;
+                option.textContent = `${item.name} (${item.code})`;
+                option.setAttribute('data-digits', digits);
+                if (item.name === "India") {
+                    option.selected = true;
+                }
+                selectEl.appendChild(option);
+            });
+        };
+        
+        populateSelect(empSelect);
+        populateSelect(employerSelect);
+    }
 });
 
 // ==========================================================================
@@ -954,5 +997,196 @@ window.toggleTeamDescription = (btn) => {
         card.classList.add('active');
         btn.classList.add('active');
         if (panel) panel.style.maxHeight = panel.scrollHeight + 'px';
+    }
+};
+
+// Select Registration Type Role (Employee or Employer)
+window.selectGatewayRole = (role) => {
+    // Hide Step 1 Choice layout
+    const step1 = document.getElementById('gateway-step-1');
+    if (step1) step1.classList.remove('active');
+    
+    // Show target form Step
+    const targetStep = document.getElementById(`gateway-step-${role}`);
+    if (targetStep) targetStep.classList.add('active');
+};
+
+// Reset Gateway Step back to selection grid
+window.resetGatewaySteps = () => {
+    // Reset inputs & dropdowns in both forms
+    const empForm = document.getElementById('gatewayEmployeeForm');
+    const employerForm = document.getElementById('gatewayEmployerForm');
+    if (empForm) empForm.reset();
+    if (employerForm) employerForm.reset();
+    
+    // Hide specify inputs
+    const empOther = document.getElementById('empOtherFieldWrapper');
+    const employerOther = document.getElementById('employerOtherTypeWrapper');
+    if (empOther) empOther.style.display = 'none';
+    if (employerOther) employerOther.style.display = 'none';
+    
+    // Hide forms and return to selection card grid
+    document.querySelectorAll('.gateway-step').forEach(step => {
+        step.classList.remove('active');
+    });
+    
+    const step1 = document.getElementById('gateway-step-1');
+    if (step1) step1.classList.add('active');
+};
+
+// Show/hide other specify input dynamically
+window.toggleGatewayOtherInput = (selectId, wrapperId) => {
+    const select = document.getElementById(selectId);
+    const wrapper = document.getElementById(wrapperId);
+    if (!select || !wrapper) return;
+    
+    const input = wrapper.querySelector('input');
+    if (select.value === 'Other') {
+        wrapper.style.display = 'block';
+        if (input) input.required = true;
+    } else {
+        wrapper.style.display = 'none';
+        if (input) {
+            input.required = false;
+            input.value = '';
+        }
+    }
+};
+
+// Handle Onboarding registration POST request submissions
+window.submitGatewayForm = (event, role) => {
+    event.preventDefault();
+    
+    let formData = {};
+    const timestampIST = new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
+    
+    if (role === 'employee') {
+        const name = document.getElementById('empName').value;
+        const phoneCode = document.getElementById('empCountryCode').value;
+        const phoneNum = document.getElementById('empPhone').value;
+        const email = document.getElementById('empEmail').value || "";
+        const fieldOfWorkSelect = document.getElementById('empFieldOfWork').value;
+        const otherField = document.getElementById('empOtherField').value;
+        const fieldOfWork = fieldOfWorkSelect === 'Other' ? `Other (Custom: ${otherField})` : fieldOfWorkSelect;
+        
+        // Validate phone length
+        const selectEl = document.getElementById('empCountryCode');
+        const phoneInput = document.getElementById('empPhone');
+        const selectedOption = selectEl.options[selectEl.selectedIndex];
+        const expectedDigits = parseInt(selectedOption.getAttribute('data-digits')) || 10;
+        const phoneNumClean = phoneNum.replace(/\D/g, "");
+        
+        if (phoneNumClean.length !== expectedDigits) {
+            phoneInput.setCustomValidity(`Please enter exactly ${expectedDigits} digits for your phone number.`);
+            phoneInput.reportValidity();
+            return;
+        } else {
+            phoneInput.setCustomValidity("");
+        }
+        
+        formData = {
+            timestamp: timestampIST,
+            companyName: "N/A (Individual Employee)",
+            contactName: name,
+            emailAddress: email,
+            phoneNumber: phoneCode + " " + phoneNum,
+            serviceRequired: "Gateway: Employee Registration",
+            message: `Field of Work: ${fieldOfWork}`,
+            q1Importance: "N/A",
+            q2Benefits: "N/A",
+            q3Reason: "N/A",
+            q4Satisfaction: "N/A",
+            q5Productivity: "N/A",
+            q6Challenges: "N/A",
+            q7Expansion: "N/A"
+        };
+        
+    } else if (role === 'employer') {
+        const company = document.getElementById('employerCompany').value;
+        const name = document.getElementById('employerName').value;
+        const phoneCode = document.getElementById('employerCountryCode').value;
+        const phoneNum = document.getElementById('employerPhone').value;
+        const email = document.getElementById('employerEmail').value || "";
+        const companyTypeSelect = document.getElementById('employerCompanyType').value;
+        const otherType = document.getElementById('employerOtherType').value;
+        const companyType = companyTypeSelect === 'Other' ? `Other (Custom: ${otherType})` : companyTypeSelect;
+        
+        // Validate phone length
+        const selectEl = document.getElementById('employerCountryCode');
+        const phoneInput = document.getElementById('employerPhone');
+        const selectedOption = selectEl.options[selectEl.selectedIndex];
+        const expectedDigits = parseInt(selectedOption.getAttribute('data-digits')) || 10;
+        const phoneNumClean = phoneNum.replace(/\D/g, "");
+        
+        if (phoneNumClean.length !== expectedDigits) {
+            phoneInput.setCustomValidity(`Please enter exactly ${expectedDigits} digits for your phone number.`);
+            phoneInput.reportValidity();
+            return;
+        } else {
+            phoneInput.setCustomValidity("");
+        }
+        
+        formData = {
+            timestamp: timestampIST,
+            companyName: company,
+            contactName: name,
+            emailAddress: email,
+            phoneNumber: phoneCode + " " + phoneNum,
+            serviceRequired: "Gateway: Employer Registration",
+            message: `Company Type: ${companyType}`,
+            q1Importance: "N/A",
+            q2Benefits: "N/A",
+            q3Reason: "N/A",
+            q4Satisfaction: "N/A",
+            q5Productivity: "N/A",
+            q6Challenges: "N/A",
+            q7Expansion: "N/A"
+        };
+    }
+    
+    // Show spinner loader state on submit button
+    const submitBtn = event.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerText;
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Submitting registration...";
+    
+    if (GOOGLE_SCRIPT_URL) {
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(() => {
+            console.log("Gateway lead successfully submitted to Google Sheet.");
+            completeGatewayOnboarding();
+        })
+        .catch(err => {
+            console.error("Error submitting gateway lead:", err);
+            // Local fallback bypass so user isn't stuck on API glitches
+            completeGatewayOnboarding();
+        });
+    } else {
+        completeGatewayOnboarding();
+    }
+    
+    function completeGatewayOnboarding() {
+        localStorage.setItem('bharat_hr_onboarded', 'true');
+        
+        // Close overlay with smooth fadeOut
+        const overlay = document.getElementById('gateway-overlay');
+        if (overlay) {
+            overlay.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            overlay.style.opacity = '0';
+            overlay.style.transform = 'scale(0.96)';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                document.body.classList.remove('gateway-locked');
+            }, 400);
+        } else {
+            document.body.classList.remove('gateway-locked');
+        }
     }
 };

@@ -12,15 +12,148 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="index.css?v=2.0.9">
+    <link rel="stylesheet" href="index.css?v=2.1.0">
 </head>
 <body>
+    <!-- Onboarding Gateway Overlay Portal -->
+    <div id="gateway-overlay" class="gateway-overlay">
+        <div class="gateway-card animate-fadeIn">
+            <div class="gateway-header">
+                <img src="assets/logo_new.png" alt="Bharat HR Ventures Logo" class="gateway-logo">
+                <h2>Please fill our form to continue</h2>
+                <p>To access the complete website, checklists, and statutory tools, please take a moment to register.</p>
+            </div>
+            
+            <!-- Step 1: Initial Choice Card Selection -->
+            <div id="gateway-step-1" class="gateway-step active">
+                <div class="gateway-choice-grid">
+                    <button type="button" class="gateway-choice-card" onclick="selectGatewayRole('employee')">
+                        <div class="choice-icon"><i class="fa-solid fa-user-tie"></i></div>
+                        <h3>Employee Registration</h3>
+                        <p>Access job lists, document centers, and compliance checklist forms.</p>
+                    </button>
+                    
+                    <button type="button" class="gateway-choice-card" onclick="selectGatewayRole('employer')">
+                        <div class="choice-icon"><i class="fa-solid fa-building-user"></i></div>
+                        <h3>Employer Registration</h3>
+                        <p>Access recruitment options, corporate payroll, and audits.</p>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Step 2: Employee Form -->
+            <div id="gateway-step-employee" class="gateway-step">
+                <div class="gateway-back-nav">
+                    <button type="button" class="btn-back" onclick="resetGatewaySteps()"><i class="fa-solid fa-arrow-left"></i> Change Registration Type</button>
+                </div>
+                
+                <form id="gatewayEmployeeForm" onsubmit="submitGatewayForm(event, 'employee')">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" id="empName" required placeholder="Enter your full name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Contact Number *</label>
+                        <div class="phone-input-group" style="display: flex; gap: 8px;">
+                            <select id="empCountryCode" style="width: 140px; flex-shrink: 0;" required></select>
+                            <input type="tel" id="empPhone" required placeholder="Enter mobile number" style="flex-grow: 1;">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email Address (Optional)</label>
+                        <input type="email" id="empEmail" placeholder="e.g. name@company.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Field of Work *</label>
+                        <select id="empFieldOfWork" required onchange="toggleGatewayOtherInput('empFieldOfWork', 'empOtherFieldWrapper')">
+                            <option value="" disabled selected>-- Select Field of Work --</option>
+                            <option value="Accounts">Accounts & Finance</option>
+                            <option value="IT Services">IT Services / Tech</option>
+                            <option value="Non-IT">Non-IT / General</option>
+                            <option value="Human Resources">Human Resources & Recruitment</option>
+                            <option value="Administration">Administration & Facilities</option>
+                            <option value="Operations">Operations & Supply Chain</option>
+                            <option value="Sales & Marketing">Sales & Marketing</option>
+                            <option value="Customer Support">Customer Service & Support</option>
+                            <option value="Healthcare">Healthcare & Biotech</option>
+                            <option value="Education">Education & Training</option>
+                            <option value="Other">Other (Please specify)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group gateway-other-wrapper" id="empOtherFieldWrapper" style="display: none;">
+                        <label>Specify Field of Work *</label>
+                        <input type="text" id="empOtherField" placeholder="Please specify your field of work">
+                    </div>
+                    
+                    <button type="submit" class="btn-cta btn-block" style="margin-top: 20px;">Access Complete Website</button>
+                </form>
+            </div>
+            
+            <!-- Step 2: Employer Form -->
+            <div id="gateway-step-employer" class="gateway-step">
+                <div class="gateway-back-nav">
+                    <button type="button" class="btn-back" onclick="resetGatewaySteps()"><i class="fa-solid fa-arrow-left"></i> Change Registration Type</button>
+                </div>
+                
+                <form id="gatewayEmployerForm" onsubmit="submitGatewayForm(event, 'employer')">
+                    <div class="form-group">
+                        <label>Company Name *</label>
+                        <input type="text" id="employerCompany" required placeholder="Enter company name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Contact Person Name *</label>
+                        <input type="text" id="employerName" required placeholder="Enter your name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Contact Number *</label>
+                        <div class="phone-input-group" style="display: flex; gap: 8px;">
+                            <select id="employerCountryCode" style="width: 140px; flex-shrink: 0;" required></select>
+                            <input type="tel" id="employerPhone" required placeholder="Enter mobile number" style="flex-grow: 1;">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email Address (Optional)</label>
+                        <input type="email" id="employerEmail" placeholder="e.g. info@company.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Type of Company *</label>
+                        <select id="employerCompanyType" required onchange="toggleGatewayOtherInput('employerCompanyType', 'employerOtherTypeWrapper')">
+                            <option value="" disabled selected>-- Select Company Type --</option>
+                            <option value="Private Limited">Private Limited (Pvt Ltd)</option>
+                            <option value="Public Limited">Public Limited</option>
+                            <option value="One Person Company">One Person Company (OPC)</option>
+                            <option value="LLP">Limited Liability Partnership (LLP)</option>
+                            <option value="Partnership Firm">Partnership Firm</option>
+                            <option value="Sole Proprietorship">Sole Proprietorship</option>
+                            <option value="NGO / Trust">Non-Governmental Org (NGO) / Trust</option>
+                            <option value="Other">Other (Please specify)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group gateway-other-wrapper" id="employerOtherTypeWrapper" style="display: none;">
+                        <label>Specify Company Type *</label>
+                        <input type="text" id="employerOtherType" placeholder="Please specify company type">
+                    </div>
+                    
+                    <button type="submit" class="btn-cta btn-block" style="margin-top: 20px;">Access Complete Website</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Navigation Bar -->
     <header class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#home" class="logo-container">
-                <img src="assets/unnamed.png" alt="Bharat HR Ventures Logo" class="nav-logo">
-                <span class="logo-text">BHARAT <span class="accent-text">HR</span> VENTURES</span>
+                <img src="assets/logo_new.png" alt="Bharat HR Ventures Logo" class="nav-logo">
             </a>
             <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
                 <i class="fa-solid fa-bars"></i>
@@ -315,6 +448,17 @@ Well-versed in ensuring compliance with Central and State labour laws, statutory
                             </div>
                         </div>
                     </div>
+
+                    <!-- Team Member 10 (Advisory 6) -->
+                    <div class="team-card advisory-no-photo">
+                        <div class="team-photo-container no-photo-placeholder" style="display: flex; align-items: center; justify-content: center; background: #f1f5f9; color: var(--color-text-muted); font-size: 3rem;">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <div class="team-info" style="text-align: center; padding: 20px;">
+                            <h4 class="team-name">Ramesh Kumar</h4>
+                            <p class="team-role">Advisory Board Member</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -439,7 +583,9 @@ Well-versed in ensuring compliance with Central and State labour laws, statutory
                 <!-- ESI Card -->
                 <div class="service-box glass-card">
                     <div class="service-box-header">
-                        <div class="box-icon"><i class="fa-solid fa-shield-heart"></i></div>
+                        <div class="box-icon-img">
+                            <img src="assets/logo_esi.png" alt="ESI Logo" class="service-logo-img">
+                        </div>
                         <h3>ESI (Employees' State Insurance)</h3>
                     </div>
                     <p>In India, ESI is a self-financing social security and health insurance scheme for workers. Managed by the Employees' State Insurance Corporation (ESIC), it safeguards employees earning up to ₹21,000 per month against financial hardships caused by sickness, maternity, or employment-related injuries.</p>
@@ -453,7 +599,9 @@ Well-versed in ensuring compliance with Central and State labour laws, statutory
                 <!-- PF Card -->
                 <div class="service-box glass-card">
                     <div class="service-box-header">
-                        <div class="box-icon"><i class="fa-solid fa-vault"></i></div>
+                        <div class="box-icon-img">
+                            <img src="assets/logo_pf.png" alt="PF Logo" class="service-logo-img">
+                        </div>
                         <h3>PF (Provident Fund)</h3>
                     </div>
                     <p>PF stands for Provident Fund. Managed by the EPFO (Employees' Provident Fund Organisation), it is a government-managed retirement savings scheme where a portion of an employee's salary is set aside each month to provide financial security after retirement.</p>
@@ -486,19 +634,25 @@ Well-versed in ensuring compliance with Central and State labour laws, statutory
 
             <div class="gov-schemes-grid">
                 <div class="scheme-card">
-                    <div class="scheme-icon"><i class="fa-solid fa-house-medical"></i></div>
+                    <div class="scheme-icon-img">
+                        <img src="assets/logo_pmjay.png" alt="AB-PMJAY Logo" class="scheme-logo-img">
+                    </div>
                     <h4>AB-PMJAY</h4>
                     <h5>Ayushman Bharat</h5>
                     <p>Flagship health insurance scheme providing ₹5 lakh of cashless coverage per family per year for secondary & tertiary hospitalization.</p>
                 </div>
                 <div class="scheme-card">
-                    <div class="scheme-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                    <div class="scheme-icon-img">
+                        <img src="assets/logo_pmjjby.png" alt="PMJJBY Logo" class="scheme-logo-img">
+                    </div>
                     <h4>PMJJBY</h4>
                     <h5>Pradhan Mantri Jeevan Jyoti Bima</h5>
                     <p>Government-backed one-year term life insurance scheme providing ₹2 lakh death cover due to any cause at ₹436 annual premium.</p>
                 </div>
                 <div class="scheme-card">
-                    <div class="scheme-icon"><i class="fa-solid fa-user-shield"></i></div>
+                    <div class="scheme-icon-img">
+                        <img src="assets/logo_pmsby.png" alt="PMSBY Logo" class="scheme-logo-img">
+                    </div>
                     <h4>PMSBY</h4>
                     <h5>Pradhan Mantri Suraksha Bima</h5>
                     <p>Government-backed accident insurance scheme providing ₹2 lakh for accidental death/full disability and ₹1 lakh for partial disability at ₹20/year.</p>
@@ -977,8 +1131,7 @@ Well-versed in ensuring compliance with Central and State labour laws, statutory
         <div class="container footer-container">
             <div class="footer-about">
                 <div class="logo-container">
-                    <img src="assets/unnamed.png" alt="Bharat HR Ventures Logo" class="footer-logo">
-                    <span class="logo-text">BHARAT <span class="accent-text">HR</span></span>
+                    <img src="assets/logo_new.png" alt="Bharat HR Ventures Logo" class="footer-logo">
                 </div>
                 <p>BHARAT H R VENTURES PRIVATE LIMITED is committed to building elite teams with precision, compliance, and integrity since inception. Your trusted compliance and workforce protection partner.</p>
             </div>
@@ -1002,6 +1155,6 @@ Well-versed in ensuring compliance with Central and State labour laws, statutory
     </footer>
 
     <!-- Custom Script -->
-    <script src="app.js?v=2.0.7"></script>
+    <script src="app.js?v=2.1.0"></script>
 </body>
 </html>
