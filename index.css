@@ -1890,19 +1890,23 @@ select option {
 }
 
 .team-photo-container {
-    width: 100%;
-    aspect-ratio: 1 / 1.1;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
     overflow: hidden;
     background: var(--color-bg-light);
     position: relative;
+    margin: 24px auto 0 auto;
+    border: 3px solid #f1f5f9;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: border-color 0.3s ease;
 }
 
 .team-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 12%;
-    transition: transform 0.5s ease;
+    object-position: center top;
 }
 
 .team-card:hover .team-photo {
@@ -1998,12 +2002,6 @@ select option {
     .team-grid {
         grid-template-columns: 1fr;
         gap: 24px;
-    }
-    
-    .team-photo-container {
-        aspect-ratio: 1 / 1.08;
-        height: auto;
-        max-height: 420px;
     }
 }
 
