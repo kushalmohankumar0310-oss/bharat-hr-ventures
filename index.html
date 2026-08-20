@@ -12,7 +12,7 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="index.css?v=2.2.1">
+    <link rel="stylesheet" href="index.css?v=2.2.2">
 </head>
 <body>
     <!-- Onboarding Gateway Overlay Portal -->
@@ -27,16 +27,16 @@
             <!-- Step 1: Initial Choice Card Selection -->
             <div id="gateway-step-1" class="gateway-step active">
                 <div class="gateway-choice-grid">
-                    <button type="button" class="gateway-choice-card" onclick="selectGatewayRole('employee')">
-                        <div class="choice-icon"><i class="fa-solid fa-user-tie"></i></div>
-                        <h3>Employee Registration</h3>
-                        <p>Access job lists, document centers, and compliance checklist forms.</p>
-                    </button>
-                    
                     <button type="button" class="gateway-choice-card" onclick="selectGatewayRole('employer')">
                         <div class="choice-icon"><i class="fa-solid fa-building-user"></i></div>
                         <h3>Employer Registration</h3>
                         <p>Access recruitment options, corporate payroll, and audits.</p>
+                    </button>
+
+                    <button type="button" class="gateway-choice-card" onclick="selectGatewayRole('employee')">
+                        <div class="choice-icon"><i class="fa-solid fa-user-tie"></i></div>
+                        <h3>Employee Registration</h3>
+                        <p>Access job lists, document centers, and compliance checklist forms.</p>
                     </button>
                 </div>
             </div>
@@ -185,6 +185,7 @@
                 <p class="hero-subtitle">Providing reliable ESI, PF, Employee Insurance, and comprehensive Human Resource solutions, strong employment policy and workforce protection for businesses to grow risk-free.</p>
                 <div class="hero-actions">
                     <a href="#document-center" class="btn-secondary">Start Onboarding</a>
+                    <a href="#document-center" class="btn-cta">Drop your CVs</a>
                 </div>
             </div>
             <div class="hero-graphic">
@@ -1095,6 +1096,7 @@ Well-versed in ensuring compliance with Central and State labour laws, statutory
                                 <option value="epf_form_11">EPF Form 11 Declaration (Provident Fund)</option>
                                 <option value="health_ins">Group Health Insurance Enrollment Form</option>
                                 <option value="hr_checklist">New Employee Onboarding & Compliance Checklist</option>
+                                <option value="cv_upload">Job Application / Resume / CV</option>
                             </select>
                             <button type="button" class="btn-cta" onclick="downloadFormTemplate();" style="width: 100%; margin-top: 10px; padding: 10px; justify-content: center; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 8px;"><i class="fa-solid fa-download"></i> Download Selected Template</button>
                         </div>
