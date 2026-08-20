@@ -249,11 +249,11 @@ a.btn-secondary:hover, button.btn-secondary:hover, .btn-secondary:hover {
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid #e2e8f0;
     transition: var(--transition-smooth);
-    padding: 8.5px 0;
+    padding: 4px 0;
 }
 
 .navbar.scrolled {
-    padding: 5px 0;
+    padding: 2px 0;
     box-shadow: var(--shadow-md);
 }
 
@@ -263,7 +263,7 @@ a.btn-secondary:hover, button.btn-secondary:hover, .btn-secondary:hover {
     align-items: center;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 8px 24px;
+    padding: 4px 24px;
     width: 100%;
 }
 
