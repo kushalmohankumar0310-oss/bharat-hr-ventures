@@ -15,9 +15,14 @@ function doPost(e) {
     var ss = SpreadsheetApp.getActiveSpreadsheet();
     var data = JSON.parse(e.postData.contents);
     
-    // Check if the request is a file upload or a standard survey lead
+    // -------------------------------------------------------------------------
+    // 1. ROUTING SYSTEM BY FORM TYPE
+    // -------------------------------------------------------------------------
+    
     if (data.action === "upload" && data.fileData) {
-      // 1. PROCESS SECURE FILE UPLOAD TO GOOGLE DRIVE
+      // =======================================================================
+      // FORM 3: ONBOARDING SECURE PORTAL (UPLOAD) -> "Uploaded Documents" TAB
+      // =======================================================================
       var folderName = "Bharat HR Ventures Lead Uploads";
       var folders = DriveApp.getFoldersByName(folderName);
       var folder;
@@ -36,10 +41,8 @@ function doPost(e) {
       
       // Set sharing settings so administrators can open it via the link
       file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
-      
       var fileUrl = file.getUrl();
       
-      // 2. LOG FILE DETAILS TO "Uploaded Documents" TAB
       var docSheet = ss.getSheetByName("Uploaded Documents");
       if (!docSheet) {
         docSheet = ss.insertSheet("Uploaded Documents");
@@ -69,7 +72,7 @@ function doPost(e) {
       docSheet.appendRow([
         "Yet to Review",
         data.timestamp,
-        data.companyName,
+        data.companyName || "N/A (Employee)",
         data.contactName,
         data.emailAddress,
         data.documentType,
@@ -82,16 +85,76 @@ function doPost(e) {
       rowRange.setFontSize(10)
               .setVerticalAlignment("middle")
               .setWrap(true);
-              
+               
       docSheet.getRange(lastRow, 1).setHorizontalAlignment("center");
       docSheet.getRange(lastRow, 2).setHorizontalAlignment("center");
       docSheet.getRange(lastRow, 8).setHorizontalAlignment("left");
       
       docSheet.autoResizeColumns(1, 8);
-      docSheet.setColumnWidth(8, 300); // Drive Link width
+      docSheet.setColumnWidth(8, 300);
+      
+    } else if (data.serviceRequired && data.serviceRequired.indexOf("Gateway:") === 0) {
+      // =======================================================================
+      // FORM 1: GATEWAY ONBOARDING REGISTRATION FORM -> "Registrations" TAB
+      // =======================================================================
+      var regSheet = ss.getSheetByName("Registrations");
+      if (!regSheet) {
+        regSheet = ss.insertSheet("Registrations");
+      }
+      
+      if (regSheet.getLastRow() === 0) {
+        regSheet.appendRow([
+          "Status",
+          "Timestamp (IST)",
+          "Registration Type",
+          "Company Name",
+          "Contact Person",
+          "Email Address",
+          "Phone Number",
+          "Field of Work / Company Details"
+        ]);
+        var headerRange = regSheet.getRange(1, 1, 1, 8);
+        headerRange.setFontWeight("bold")
+                   .setBackground("#0f172a")
+                   .setFontColor("#ffffff")
+                   .setFontSize(11)
+                   .setHorizontalAlignment("center")
+                   .setVerticalAlignment("middle");
+        regSheet.setRowHeight(1, 35);
+      }
+      
+      var roleType = data.serviceRequired.replace("Gateway: ", ""); // "Employee Registration" or "Employer Registration"
+      var details = data.message; // Contains "Field of Work: ..." or "Company Type: ..."
+      
+      regSheet.appendRow([
+        "Registered",
+        data.timestamp,
+        roleType,
+        data.companyName || "N/A (Employee)",
+        data.contactName,
+        data.emailAddress || "None Provided",
+        "'" + data.phoneNumber,
+        details
+      ]);
+      
+      var lastRow = regSheet.getLastRow();
+      var rowRange = regSheet.getRange(lastRow, 1, 1, 8);
+      rowRange.setFontSize(10)
+              .setVerticalAlignment("middle")
+              .setWrap(true);
+               
+      regSheet.getRange(lastRow, 1).setHorizontalAlignment("center");
+      regSheet.getRange(lastRow, 2).setHorizontalAlignment("center");
+      regSheet.getRange(lastRow, 3).setHorizontalAlignment("center");
+      regSheet.getRange(lastRow, 7).setHorizontalAlignment("center");
+      
+      regSheet.autoResizeColumns(1, 8);
+      regSheet.setColumnWidth(8, 300);
       
     } else {
-      // 3. PROCESS STANDARD SURVEY LEAD SUBMISSION
+      // =======================================================================
+      // FORM 2: FREE CONSULTANCY SURVEY -> "Leads" TAB
+      // =======================================================================
       var leadsSheet = ss.getSheetByName("Leads");
       if (!leadsSheet) {
         leadsSheet = ss.insertSheet("Leads");
@@ -134,13 +197,13 @@ function doPost(e) {
         "'" + data.phoneNumber,
         data.serviceRequired,
         data.message,
-        data.q1Importance,
-        data.q2Benefits,
-        data.q3Reason,
-        data.q4Satisfaction,
-        data.q5Productivity,
-        data.q6Challenges,
-        data.q7Expansion
+        data.q1Importance || "N/A",
+        data.q2Benefits || "N/A",
+        data.q3Reason || "N/A",
+        data.q4Satisfaction || "N/A",
+        data.q5Productivity || "N/A",
+        data.q6Challenges || "N/A",
+        data.q7Expansion || "N/A"
       ]);
       
       var lastRow = leadsSheet.getLastRow();
@@ -148,7 +211,7 @@ function doPost(e) {
       rowRange.setFontSize(10)
               .setVerticalAlignment("middle")
               .setWrap(true);
-              
+               
       leadsSheet.getRange(lastRow, 1).setHorizontalAlignment("center");
       leadsSheet.getRange(lastRow, 2).setHorizontalAlignment("center");
       leadsSheet.getRange(lastRow, 6).setHorizontalAlignment("center");
