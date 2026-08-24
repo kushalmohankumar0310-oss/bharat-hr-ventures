@@ -12,142 +12,9 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="index.css?v=2.2.4">
+    <link rel="stylesheet" href="index.css?v=3.0.0">
 </head>
 <body>
-    <!-- Onboarding Gateway Overlay Portal -->
-    <div id="gateway-overlay" class="gateway-overlay">
-        <div class="gateway-card animate-fadeIn">
-            <div class="gateway-header">
-                <img src="assets/logo_new.png?v=2.1.7" alt="Bharat HR Ventures Logo" class="gateway-logo">
-                <h2>Please fill our form to continue</h2>
-                <p>Take a moment to register.</p>
-            </div>
-            
-            <!-- Step 1: Initial Choice Card Selection -->
-            <div id="gateway-step-1" class="gateway-step active">
-                <div class="gateway-choice-grid">
-                    <button type="button" class="gateway-choice-card" onclick="selectGatewayRole('employer')">
-                        <div class="choice-icon"><i class="fa-solid fa-building-user"></i></div>
-                        <h3>Employer Registration</h3>
-                        <p>Access recruitment options, corporate payroll, and audits.</p>
-                    </button>
-
-                    <button type="button" class="gateway-choice-card" onclick="selectGatewayRole('employee')">
-                        <div class="choice-icon"><i class="fa-solid fa-user-tie"></i></div>
-                        <h3>Employee Registration</h3>
-                        <p>Access job lists, document centers, and compliance checklist forms.</p>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Step 2: Employee Form -->
-            <div id="gateway-step-employee" class="gateway-step">
-                <div class="gateway-back-nav">
-                    <button type="button" class="btn-back" onclick="resetGatewaySteps()"><i class="fa-solid fa-arrow-left"></i> Change Registration Type</button>
-                </div>
-                
-                <form id="gatewayEmployeeForm" onsubmit="submitGatewayForm(event, 'employee')">
-                    <div class="form-group">
-                        <label>Full Name *</label>
-                        <input type="text" id="empName" required placeholder="Enter your full name">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Contact Number *</label>
-                        <div class="phone-input-group" style="display: flex; gap: 8px;">
-                            <select id="empCountryCode" style="width: 140px; flex-shrink: 0;" required></select>
-                            <input type="tel" id="empPhone" required placeholder="Enter mobile number" style="flex-grow: 1;">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Email Address (Optional)</label>
-                        <input type="email" id="empEmail" placeholder="e.g. name@company.com">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Field of Work *</label>
-                        <select id="empFieldOfWork" required onchange="toggleGatewayOtherInput('empFieldOfWork', 'empOtherFieldWrapper')">
-                            <option value="" disabled selected>-- Select Field of Work --</option>
-                            <option value="Accounts">Accounts & Finance</option>
-                            <option value="IT Services">IT Services / Tech</option>
-                            <option value="Non-IT">Non-IT / General</option>
-                            <option value="Human Resources">Human Resources & Recruitment</option>
-                            <option value="Administration">Administration & Facilities</option>
-                            <option value="Operations">Operations & Supply Chain</option>
-                            <option value="Sales & Marketing">Sales & Marketing</option>
-                            <option value="Customer Support">Customer Service & Support</option>
-                            <option value="Healthcare">Healthcare & Biotech</option>
-                            <option value="Education">Education & Training</option>
-                            <option value="Other">Other (Please specify)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group gateway-other-wrapper" id="empOtherFieldWrapper" style="display: none;">
-                        <label>Specify Field of Work *</label>
-                        <input type="text" id="empOtherField" placeholder="Please specify your field of work">
-                    </div>
-                    
-                    <button type="submit" class="btn-cta btn-block" style="margin-top: 20px;">Submit</button>
-                </form>
-            </div>
-            
-            <!-- Step 2: Employer Form -->
-            <div id="gateway-step-employer" class="gateway-step">
-                <div class="gateway-back-nav">
-                    <button type="button" class="btn-back" onclick="resetGatewaySteps()"><i class="fa-solid fa-arrow-left"></i> Change Registration Type</button>
-                </div>
-                
-                <form id="gatewayEmployerForm" onsubmit="submitGatewayForm(event, 'employer')">
-                    <div class="form-group">
-                        <label>Company Name *</label>
-                        <input type="text" id="employerCompany" required placeholder="Enter company name">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Contact Person Name *</label>
-                        <input type="text" id="employerName" required placeholder="Enter your name">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Contact Number *</label>
-                        <div class="phone-input-group" style="display: flex; gap: 8px;">
-                            <select id="employerCountryCode" style="width: 140px; flex-shrink: 0;" required></select>
-                            <input type="tel" id="employerPhone" required placeholder="Enter mobile number" style="flex-grow: 1;">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Email Address (Optional)</label>
-                        <input type="email" id="employerEmail" placeholder="e.g. info@company.com">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Type of Company *</label>
-                        <select id="employerCompanyType" required onchange="toggleGatewayOtherInput('employerCompanyType', 'employerOtherTypeWrapper')">
-                            <option value="" disabled selected>-- Select Company Type --</option>
-                            <option value="Private Limited">Private Limited (Pvt Ltd)</option>
-                            <option value="Public Limited">Public Limited</option>
-                            <option value="One Person Company">One Person Company (OPC)</option>
-                            <option value="LLP">Limited Liability Partnership (LLP)</option>
-                            <option value="Partnership Firm">Partnership Firm</option>
-                            <option value="Sole Proprietorship">Sole Proprietorship</option>
-                            <option value="NGO / Trust">Non-Governmental Org (NGO) / Trust</option>
-                            <option value="Other">Other (Please specify)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group gateway-other-wrapper" id="employerOtherTypeWrapper" style="display: none;">
-                        <label>Specify Company Type *</label>
-                        <input type="text" id="employerOtherType" placeholder="Please specify company type">
-                    </div>
-                    
-                    <button type="submit" class="btn-cta btn-block" style="margin-top: 20px;">Submit</button>
-                </form>
-            </div>
-        </div>
-    </div>
 
     <!-- Navigation Bar -->
     <header class="navbar" id="navbar">
@@ -1147,9 +1014,6 @@ Well-versed in ensuring compliance with Central and State labour laws, statutory
     <footer class="footer">
         <div class="container footer-container">
             <div class="footer-about">
-                <div class="logo-container">
-                    <img src="assets/logo_footer.jpg?v=2.2.3" alt="Bharat HR Ventures Logo" class="footer-logo">
-                </div>
                 <p>BHARAT H R VENTURES PRIVATE LIMITED is committed to building elite teams with precision, compliance, and integrity since inception. Your trusted compliance and workforce protection partner.</p>
             </div>
             <div class="footer-links">
@@ -1172,6 +1036,6 @@ Well-versed in ensuring compliance with Central and State labour laws, statutory
     </footer>
 
     <!-- Custom Script -->
-    <script src="app.js?v=2.1.1"></script>
+    <script src="app.js?v=3.0.0"></script>
 </body>
 </html>
